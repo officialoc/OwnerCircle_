@@ -1,9 +1,7 @@
-```javascript
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // GANTI URL DI BAWAH DENGAN URL WEB APP KAMU
-  const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbykhxBjLt1r5bs4pFvV6MacZT0b9QB9SDXtKzc7eDm9iPu1VH89T_Klfx4f7Wo6V83zjw/exec";
+  const SUBMISSION_ENDPOINT = "https://formspree.io/f/meaevlqj";
 
   const form = document.getElementById("registrationForm");
   const status = document.getElementById("formStatus");
@@ -20,11 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.getElementById("navRegister")
-    ?.addEventListener("click", openRegistration);
-
-  document.getElementById("heroRegister")
-    ?.addEventListener("click", openRegistration);
+  document.getElementById("navRegister")?.addEventListener("click", openRegistration);
+  document.getElementById("heroRegister")?.addEventListener("click", openRegistration);
 
   if (!form) {
     console.error("Form registrationForm tidak ditemukan.");
@@ -34,31 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const fullName = form.elements["fullName"].value.trim();
-    const phone = form.elements["phone"].value.trim();
-    const business = form.elements["business"].value.trim();
-    const businessType = form.elements["businessType"].value;
-    const reason = form.elements["reason"].value.trim();
-    const consent = document.getElementById("consent").checked;
-
-    if (!fullName || !phone || !business || !businessType || !reason) {
-      status.textContent = "Mohon lengkapi semua kolom.";
-      return;
-    }
-
-    if (!consent) {
-      status.textContent = "Mohon centang persetujuan penggunaan data.";
-      return;
-    }
-
-    if (
-      !SUBMISSION_ENDPOINT.startsWith("https://script.google.com/macros/s/") ||
-      !SUBMISSION_ENDPOINT.endsWith("/exec")
-    ) {
-      status.textContent = "URL Google Sheets belum dipasang dengan benar.";
-      return;
-    }
-
     const button = form.querySelector('button[type="submit"]');
 
     if (button) {
@@ -66,42 +36,43 @@ document.addEventListener("DOMContentLoaded", () => {
       button.textContent = "Mengirim...";
     }
 
-    status.textContent = "Sedang mengirim pendaftaran...";
+    if (status) {
+      status.textContent = "Sedang mengirim pendaftaran...";
+    }
 
     try {
-      await fetch(SUBMISSION_ENDPOINT, {
+      const response = await fetch(SUBMISSION_ENDPOINT, {
         method: "POST",
-        mode: "no-cors",
+        body: new FormData(form),
         headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          business,
-          businessType,
-          reason,
-          consent,
-          submittedAt: new Date().toISOString()
-        })
+          Accept: "application/json"
+        }
       });
 
-      // Mode no-cors tidak bisa memastikan data tersimpan.
-      // Tunggu sebentar sebelum menampilkan halaman berikutnya.
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (response.ok) {
+        window.location.href = "berhasil.html";
+        return;
+      }
 
-      window.location.href = "berhasil.html";
+      const result = await response.json().catch(() => ({}));
 
+      if (status) {
+        status.textContent =
+          result.errors?.map(error => error.message).join(", ") ||
+          "Pendaftaran gagal dikirim. Silakan coba lagi.";
+      }
     } catch (error) {
       console.error("Gagal mengirim pendaftaran:", error);
-      status.textContent =
-        "Pengiriman gagal. Periksa koneksi internet dan coba lagi.";
 
-      if (button) {
-        button.disabled = false;
-        button.textContent = "Kirim Pendaftaran ↗";
+      if (status) {
+        status.textContent =
+          "Koneksi bermasalah. Periksa internet lalu coba lagi.";
       }
+    }
+
+    if (button) {
+      button.disabled = false;
+      button.textContent = "Kirim Pendaftaran ↗";
     }
   });
 });
-```
