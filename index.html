@@ -142,76 +142,72 @@
       </div>
     </section>
 
-    <section class="register-section" id="register">
-      <p class="eyebrow">05 / YOUR NEXT CHAPTER</p>
-      <h2>Temukan lingkaran<br><span>bertumbuhmu.</span></h2>
-      <p>Isi data pendaftaran dan jadilah bagian dari percakapan berikutnya.</p>
+    
+<section class="register-section" id="register">
+  <p class="eyebrow">05 / YOUR NEXT CHAPTER</p>
 
-      <div id="loginPanel" class="form-card">
-        <h3>Kenalan dulu, yuk.</h3>
-        <p>Masukkan nama dan email untuk melanjutkan pendaftaran.</p>
-        <form id="loginForm">
-          <label for="loginName">Nama lengkap</label>
-          <input id="loginName" name="name" autocomplete="name" required maxlength="100">
+  <h2>Temukan lingkaran<br><span>bertumbuhmu.</span></h2>
 
-          <label for="loginEmail">Alamat email</label>
-          <input id="loginEmail" name="email" type="email"
-                 autocomplete="email" required maxlength="254">
+  <p>
+    Isi data pendaftaran dan jadilah bagian dari percakapan berikutnya.
+  </p>
 
-          <button class="button full-width" type="submit">Lanjutkan ↗</button>
-        </form>
-        <p class="hint">Ini adalah identitas peserta, bukan verifikasi kepemilikan email.</p>
-      </div>
+  <!-- TAHAP 1: IDENTITAS PESERTA -->
+  
+<section class="register-section" id="register">
+  <p class="eyebrow">05 / YOUR NEXT CHAPTER</p>
+  <h2>Temukan lingkaran<br><span>bertumbuhmu.</span></h2>
+  <p>Isi data pendaftaran dan jadilah bagian dari percakapan berikutnya.</p>
 
-      <div id="registrationPanel" class="form-card" hidden>
-        <h3>Formulir pendaftaran</h3>
-        <p>Hai, <strong id="welcomeName"></strong>. Lengkapi data berikut.</p>
-        <form id="registrationForm">
-          <label for="fullName">Nama lengkap</label>
-          <input id="fullName" name="fullName" required maxlength="100">
+  <div class="form-card">
+    <h3>Formulir pendaftaran</h3>
+    <p>Kenalan dulu, yuk. Lengkapi data berikut.</p>
 
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required maxlength="254">
+    <form id="registrationForm">
+      <label for="fullName">Nama lengkap</label>
+      <input id="fullName" name="fullName" type="text"
+        placeholder="Masukkan nama lengkap" maxlength="100" required>
 
-          <label for="phone">Nomor WhatsApp</label>
-          <input id="phone" name="phone" type="tel" required maxlength="25"
-                 placeholder="08xxxxxxxxxx">
+      <label for="phone">Nomor WhatsApp</label>
+      <input id="phone" name="phone" type="tel"
+        placeholder="08xxxxxxxxxx" maxlength="25" required>
 
-          <label for="business">Nama usaha / pekerjaan</label>
-          <input id="business" name="business" required maxlength="120">
+      <label for="business">Nama usaha</label>
+      <input id="business" name="business" type="text"
+        placeholder="Masukkan nama usaha kamu" maxlength="120" required>
 
-          <label for="role">Peran kamu</label>
-          <select id="role" name="role" required>
-            <option value="">Pilih salah satu</option>
-            <option>Pemilik usaha</option>
-            <option>Founder / co-founder</option>
-            <option>Freelancer</option>
-            <option>Profesional</option>
-            <option>Lainnya</option>
-          </select>
+      <label for="businessType">Jenis usaha</label>
+      <select id="businessType" name="businessType" required>
+        <option value="">Pilih jenis usaha</option>
+        <option value="Kuliner / F&B">Kuliner / F&B</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Kecantikan">Kecantikan</option>
+        <option value="Jasa">Jasa</option>
+        <option value="Kreatif / Media">Kreatif / Media</option>
+        <option value="Perdagangan / Retail">Perdagangan / Retail</option>
+        <option value="Teknologi">Teknologi</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
 
-          <label for="city">Domisili</label>
-          <input id="city" name="city" required maxlength="100">
+      <label for="reason">Apa yang ingin kamu dapatkan dari Owner Circle?</label>
+      <textarea id="reason" name="reason" rows="4"
+        placeholder="Ceritakan harapanmu bergabung..."
+        maxlength="1000" required></textarea>
 
-          <label for="reason">Apa yang ingin kamu dapatkan dari Owner Circle?</label>
-          <textarea id="reason" name="reason" rows="4" maxlength="1000"
-                    placeholder="Ceritakan secara singkat..."></textarea>
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" required>
+        Saya setuju data ini digunakan untuk pendaftaran dan komunikasi terkait Owner Circle.
+      </label>
 
-          <label class="consent">
-            <input type="checkbox" id="consent" required>
-            Saya setuju data ini digunakan untuk keperluan pendaftaran
-            dan komunikasi terkait Owner Circle.
-          </label>
+      <button class="button full-width" type="submit">
+        Kirim Pendaftaran ↗
+      </button>
+    </form>
 
-          <button class="button full-width" type="submit">Kirim Pendaftaran ↗</button>
-          <button class="text-button full-width" id="backButton" type="button">
-            Kembali
-          </button>
-        </form>
-      </div>
-      <p id="formStatus" class="status" role="status" aria-live="polite"></p>
-    </section>
-  </main>
+    <p id="formStatus" class="status" role="status" aria-live="polite"></p>
+  </div>
+</section>
+</main>
 
   <footer>
     <a class="brand" href="#home">OWNER<span>CIRCLE.</span></a>
@@ -219,6 +215,6 @@
     <a href="#home">Kembali ke atas ↑</a>
   </footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

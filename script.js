@@ -1,120 +1,107 @@
-
+```javascript
 "use strict";
 
-// URL endpoint akan diisi setelah layanan Excel dikonfigurasi.
-// Biarkan kosong selama tahap belajar tampilan.
-const SUBMISSION_ENDPOINT = "";
+document.addEventListener("DOMContentLoaded", () => {
+  // GANTI URL DI BAWAH DENGAN URL WEB APP KAMU
+  const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbwnvz_N6Vx3grpCICiAVCIP7JBHBph1hD2PG1VlCaS75C7nrwGVZRqhm-WQHJs3la6MMg/exec";
 
-const $ = (selector) => document.querySelector(selector);
+  const form = document.getElementById("registrationForm");
+  const status = document.getElementById("formStatus");
 
-const loginPanel = $("#loginPanel");
-const registrationPanel = $("#registrationPanel");
-const statusMessage = $("#formStatus");
-
-$("#year").textContent = new Date().getFullYear();
-
-function openRegistration() {
-  $("#register").scrollIntoView({ behavior: "smooth" });
-  $("#loginName").focus({ preventScroll: true });
-}
-
-$("#navRegister").addEventListener("click", openRegistration);
-$("#heroRegister").addEventListener("click", openRegistration);
-
-$("#loginForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const name = $("#loginName").value.trim();
-  const email = $("#loginEmail").value.trim();
-
-  if (!name || !email) {
-    statusMessage.textContent = "Isi nama dan email terlebih dahulu.";
-    return;
+  const year = document.getElementById("year");
+  if (year) {
+    year.textContent = new Date().getFullYear();
   }
 
-  // Nama dan email hanya menjadi identitas peserta.
-  // Tidak ada verifikasi bahwa email benar-benar miliknya.
-  $("#fullName").value = name;
-  $("#email").value = email;
-  $("#welcomeName").textContent = name;
-
-  loginPanel.hidden = true;
-  registrationPanel.hidden = false;
-  statusMessage.textContent = "";
-
-  $("#registrationPanel").scrollIntoView({ behavior: "smooth" });
-});
-
-$("#backButton").addEventListener("click", () => {
-  registrationPanel.hidden = true;
-  loginPanel.hidden = false;
-  statusMessage.textContent = "";
-  $("#loginPanel").scrollIntoView({ behavior: "smooth" });
-});
-
-$("#registrationForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const submitButton = $("#registrationForm button[type='submit']");
-
-  // Ambil data dari form yang sudah divalidasi browser.
-  const formData = new FormData(event.currentTarget);
-
-  const payload = {
-    fullName: String(formData.get("fullName") || "").trim(),
-    email: String(formData.get("email") || "").trim(),
-    phone: String(formData.get("phone") || "").trim(),
-    business: String(formData.get("business") || "").trim(),
-    role: String(formData.get("role") || "").trim(),
-    city: String(formData.get("city") || "").trim(),
-    reason: String(formData.get("reason") || "").trim(),
-    consent: $("#consent").checked,
-    submittedAt: new Date().toISOString()
-  };
-
-  if (!payload.consent) {
-    statusMessage.textContent = "Persetujuan penggunaan data wajib dicentang.";
-    return;
-  }
-
-  if (!payload.fullName || !payload.email || !payload.phone ||
-      !payload.business || !payload.role || !payload.city) {
-    statusMessage.textContent = "Mohon lengkapi semua kolom wajib.";
-    return;
-  }
-
-  if (!SUBMISSION_ENDPOINT) {
-    statusMessage.textContent =
-      "Formulir sudah siap, tetapi pengiriman online belum diaktifkan. " +
-      "Hubungkan endpoint Excel terlebih dahulu.";
-    return;
-  }
-
-  submitButton.disabled = true;
-  submitButton.textContent = "Mengirim...";
-
-  try {
-    const response = await fetch(SUBMISSION_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+  function openRegistration() {
+    document.getElementById("register")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
+  }
 
-    if (!response.ok) {
-      throw new Error("Pengiriman gagal");
+  document.getElementById("navRegister")
+    ?.addEventListener("click", openRegistration);
+
+  document.getElementById("heroRegister")
+    ?.addEventListener("click", openRegistration);
+
+  if (!form) {
+    console.error("Form registrationForm tidak ditemukan.");
+    return;
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const fullName = form.elements["fullName"].value.trim();
+    const phone = form.elements["phone"].value.trim();
+    const business = form.elements["business"].value.trim();
+    const businessType = form.elements["businessType"].value;
+    const reason = form.elements["reason"].value.trim();
+    const consent = document.getElementById("consent").checked;
+
+    if (!fullName || !phone || !business || !businessType || !reason) {
+      status.textContent = "Mohon lengkapi semua kolom.";
+      return;
     }
 
-    statusMessage.textContent =
-      "Pendaftaran berhasil dikirim. Terima kasih sudah bergabung!";
+    if (!consent) {
+      status.textContent = "Mohon centang persetujuan penggunaan data.";
+      return;
+    }
 
-    event.currentTarget.reset();
-    registrationPanel.hidden = true;
-    loginPanel.hidden = false;
-  } catch (error) {
-    statusMessage.textContent =
-      "Pendaftaran belum berhasil dikirim. Periksa koneksi atau coba lagi.";
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Kirim Pendaftaran ↗";
-  }
+    if (
+      !SUBMISSION_ENDPOINT.startsWith("https://script.google.com/macros/s/") ||
+      !SUBMISSION_ENDPOINT.endsWith("/exec")
+    ) {
+      status.textContent = "URL Google Sheets belum dipasang dengan benar.";
+      return;
+    }
+
+    const button = form.querySelector('button[type="submit"]');
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Mengirim...";
+    }
+
+    status.textContent = "Sedang mengirim pendaftaran...";
+
+    try {
+      await fetch(SUBMISSION_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          fullName,
+          phone,
+          business,
+          businessType,
+          reason,
+          consent,
+          submittedAt: new Date().toISOString()
+        })
+      });
+
+      // Mode no-cors tidak bisa memastikan data tersimpan.
+      // Tunggu sebentar sebelum menampilkan halaman berikutnya.
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      window.location.href = "berhasil.html";
+
+    } catch (error) {
+      console.error("Gagal mengirim pendaftaran:", error);
+      status.textContent =
+        "Pengiriman gagal. Periksa koneksi internet dan coba lagi.";
+
+      if (button) {
+        button.disabled = false;
+        button.textContent = "Kirim Pendaftaran ↗";
+      }
+    }
+  });
 });
+```
