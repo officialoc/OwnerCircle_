@@ -3,7 +3,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // GANTI URL DI BAWAH DENGAN URL WEB APP KAMU
-  const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbwnvz_N6Vx3grpCICiAVCIP7JBHBph1hD2PG1VlCaS75C7nrwGVZRqhm-WQHJs3la6MMg/exec";
+  const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbykhxBjLt1r5bs4pFvV6MacZT0b9QB9SDXtKzc7eDm9iPu1VH89T_Klfx4f7Wo6V83zjw/exec";
 
   const form = document.getElementById("registrationForm");
   const status = document.getElementById("formStatus");
