@@ -500,9 +500,14 @@
       "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
     ].join("\n");
 
-    const url = "https://wa.me/6285822388034?text=" + encodeURIComponent(pesan);
+    const url =
+  "https://wa.me/6285822388024?text=" + encodeURIComponent(pesan);
 
-    window.open(url, "_blank");
+// Buka WhatsApp di tab baru
+window.open(url, "_blank");
+
+// Arahkan tab website ke halaman konfirmasi
+window.location.href = "konfirmasi-gathering.html";
   }
 </script>
 
