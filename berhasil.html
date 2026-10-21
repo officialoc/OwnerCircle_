@@ -4,22 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101310">
+  <meta name="theme-color" content="#F3EBDD">
 
   <title>Pendaftaran Berhasil — Owner Circle</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --bg: #101310;
-      --panel: #191e19;
-      --lime: #864f41;
-      --white: #f5f6f1;
-      --muted: #adaaa1;
-      --line: #37352e;
+      --cream: #F3EBDD;
+      --light: #FAF7F0;
+      --brown: #79563D;
+      --dark-brown: #543A2A;
+      --black: #201C19;
+      --muted: #6F6256;
+      --border: #D9CDBB;
     }
 
     * {
@@ -33,16 +30,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background:
-        radial-gradient(ellipse at 50% 0%, #322c25 0%, transparent 55%),
-        var(--bg);
-      color: var(--white);
-      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
     }
 
     .page {
       width: 100%;
-      max-width: 520px;
+      max-width: 620px;
       margin: auto;
     }
 
@@ -50,58 +46,54 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 30px;
+      margin-bottom: 26px;
     }
 
-    .brand-mark {
+    .brand-logo {
+      display: block;
       width: 44px;
       height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: var(--lime);
-      color: #1a1512;
-      font-size: 25px;
-      font-weight: 800;
+      min-width: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .brand-name {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       letter-spacing: 1.5px;
     }
 
     .brand-subtitle {
-      margin-top: 4px;
+      margin-top: 2px;
       color: var(--muted);
       font-size: 10px;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
     }
 
     .card {
       padding: 34px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: rgba(30, 29, 25, 0.94);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--light);
     }
 
     .success-icon {
-      width: 68px;
-      height: 68px;
+      width: 64px;
+      height: 64px;
       display: grid;
       place-items: center;
-      margin-bottom: 25px;
-      border: 1px solid #58453b;
-      border-radius: 22px;
-      background: #352f24;
-      color: var(--lime);
-      font-size: 35px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--brown);
+      font-size: 32px;
     }
 
     .eyebrow {
-      margin-bottom: 12px;
-      color: var(--lime);
+      margin-bottom: 10px;
+      color: var(--brown);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -109,82 +101,98 @@
     }
 
     h1 {
-      margin: 0 0 15px;
-      font-size: clamp(30px, 7vw, 43px);
-      line-height: 1.12;
-      letter-spacing: -1.5px;
+      margin: 0 0 16px;
+      font-size: clamp(32px, 7vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1.3px;
     }
 
     .intro {
       margin: 0;
-      color: #c1c8bd;
+      color: var(--muted);
       font-size: 15px;
       line-height: 1.8;
     }
 
     .divider {
       height: 1px;
-      margin: 27px 0;
-      background: var(--line);
+      margin: 26px 0;
+      background: var(--border);
     }
 
     .next-title {
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: 700;
+      margin: 0 0 8px;
+      font-size: 19px;
     }
 
     .next-desc {
-      margin: 0 0 20px;
+      margin: 0 0 18px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.8;
     }
 
-    .whatsapp-button {
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .button {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      min-height: 54px;
-      padding: 15px 18px;
-      border-radius: 14px;
-      background: var(--lime);
-      color: #1c1712;
+      min-height: 50px;
+      padding: 13px 18px;
+      border: 1px solid var(--brown);
+      border-radius: 5px;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       text-align: center;
       text-decoration: none;
-      transition: transform 0.2s, background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
 
-    .whatsapp-button:hover {
-      transform: translateY(-2px);
-      background: #f9d9a6;
+    .button-primary {
+      background: var(--brown);
+      color: #FFFFFF;
+    }
+
+    .button-primary:hover {
+      background: var(--dark-brown);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--brown);
+    }
+
+    .button-secondary:hover {
+      background: var(--cream);
     }
 
     .notice {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      margin-top: 18px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      color: #bebab2;
+      margin-top: 22px;
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: var(--muted);
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
     .notice strong {
-      color: var(--white);
+      color: var(--dark-brown);
     }
 
     .home-button {
       display: block;
-      margin-top: 20px;
-      padding: 13px;
+      margin-top: 18px;
       color: var(--muted);
       font-size: 13px;
       font-weight: 600;
@@ -193,55 +201,30 @@
     }
 
     .home-button:hover {
-      color: var(--white);
+      color: var(--dark-brown);
     }
 
     footer {
-      margin-top: 25px;
-      color: #778073;
+      margin-top: 24px;
+      color: var(--muted);
       font-size: 10px;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       text-align: center;
     }
 
     @media (max-width: 480px) {
       body {
-        padding: 20px 16px;
+        padding: 22px 16px;
       }
 
       .card {
         padding: 25px 21px;
-        border-radius: 22px;
       }
 
       .brand {
-        margin-bottom: 23px;
+        margin-bottom: 22px;
       }
     }
-
-
-/* Khusus logo halaman Berhasil.html */
-.brand .brand-logo,
-img.brand-logo {
-  display: block !important;
-  width: 40px !important;
-  height: 40px !important;
-  min-width: 40px !important;
-  min-height: 40px !important;
-  max-width: 40px !important;
-  max-height: 40px !important;
-  object-fit: contain !important;
-  flex: 0 0 40px !important;
-  border-radius: 0;
-}
-
-/* Pastikan baris logo tetap rapi */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
   </style>
 </head>
 
@@ -249,28 +232,31 @@ img.brand-logo {
   <main class="page">
 
     <header class="brand">
-    <img
-  src="images/LOGO OC.png"
-  alt="Logo Owner Circle"
-  class="brand-logo"
->
+      <img
+        src="images/LOGO OC.png"
+        alt="Logo Owner Circle"
+        class="brand-logo"
+      >
+
+      <div>
         <div class="brand-name">OWNER CIRCLE</div>
-        <div class="brand-subtitle">GROW TOGETHER. BUILD TOGETHER.</div>
+        <div class="brand-subtitle">
+          GROW TOGETHER. BUILD TOGETHER.
+        </div>
       </div>
     </header>
 
     <section class="card">
       <div class="success-icon" aria-hidden="true">✓</div>
 
-      <div class="eyebrow">Registration successful</div>
+      <div class="eyebrow">Registration Successful</div>
 
       <h1>Pendaftaranmu<br>Berhasil!</h1>
 
       <p class="intro">
         Selamat datang di Owner Circle!
-        Senang kamu memutuskan untuk menjadi bagian dari
-        komunitas ini. Mari saling terhubung, berbagi pengalaman,
-        dan bertumbuh bersama.
+        Senang kamu memutuskan untuk menjadi bagian dari komunitas ini.
+        Mari saling terhubung, berbagi pengalaman, dan bertumbuh bersama.
       </p>
 
       <div class="divider"></div>
@@ -278,31 +264,38 @@ img.brand-logo {
       <h2 class="next-title">Yuk, lanjut bergabung!</h2>
 
       <p class="next-desc">
-        Hubungi panitia melalui WhatsApp untuk mendapatkan
-        informasi bergabung ke komunitas Owner Circle.
+        Hubungi panitia melalui WhatsApp untuk mendapatkan informasi
+        bergabung ke komunitas Owner Circle.
       </p>
 
-      <a
-        class="whatsapp-button"
-        href="https://wa.me/6281219969503?text=Halo%2C%20Admin%20Owner%20Circle!%20%F0%9F%91%8B%0A%0ASaya%20sudah%20mengisi%20pendaftaran%20untuk%20bergabung%20dengan%20komunitas%20Owner%20Circle.%20Saya%20ingin%20bergabung%20ke%20komunitas%20WhatsApp-nya.%0A%0ANama%3A%20%0A%0ATerima%20kasih!"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span aria-hidden="true">☏</span>
-        Bergabung ke Komunitas
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a href="#informasi-gathering" class="button button-primary">
-  Lihat Informasi Gathering →
-</a>  
+      <div class="actions">
+        <a
+          class="button button-primary"
+          href="https://chat.whatsapp.com/DQ5it9zrFn4D2OFHFD7KEG?s=sh&p=i&mlu=4&ilr=4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span aria-hidden="true">☏</span>
+          Bergabung ke Komunitas
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="Gathering.html"
+        >
+          Lihat Informasi Gathering →
+        </a>
+      </div>
 
       <div class="notice">
         <span aria-hidden="true">ⓘ</span>
         <span>
           <strong>Informasi penting</strong><br>
-          Ini merupakan pendaftaran untuk bergabung dengan
-          komunitas Owner Circle, bukan pendaftaran acara gathering.
-          Informasi kegiatan akan disampaikan secara terpisah.
+          Pendaftaran ini adalah untuk bergabung dengan komunitas
+          Owner Circle, bukan pendaftaran acara gathering.
+          Jika ingin mengikuti gathering, silakan lihat informasi acara
+          melalui tombol di atas.
         </span>
       </div>
 
@@ -316,7 +309,5 @@ img.brand-logo {
     </footer>
 
   </main>
-
-  
 </body>
 </html>
