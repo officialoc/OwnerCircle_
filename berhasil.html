@@ -164,10 +164,29 @@
       background: var(--dark-brown);
     }
 
-    .button-secondary {
-      background: transparent;
-      color: var(--brown);
-    }
+  
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background-color: #F3EBDD;
+  color: #543A2A;
+  border: 1px solid #D9CDBB;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.button-secondary:hover {
+  background-color: #E8DCC9;
+  border-color: #79563D;
+}
+
 
     .button-secondary:hover {
       background: var(--cream);
@@ -280,12 +299,12 @@
           <span aria-hidden="true">↗</span>
         </a>
 
-      <a href="gathering.html">
-  Lihat Informasi Gathering
+   
+<a href="gathering.html" class="button button-secondary">
+  Lihat Informasi Gathering →
 </a>
-          Lihat Informasi Gathering →
-        </a>
-      </div>
+</div>
+
 
       <div class="notice">
         <span aria-hidden="true">ⓘ</span>
