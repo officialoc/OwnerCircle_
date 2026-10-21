@@ -363,141 +363,94 @@
   </p>
 </section>
 
-    <section class="form-card">
-      <h2>Data Peserta</h2>
-
-      <!-- Ganti URL di bawah dengan endpoint Formspree khusus gathering -->
-      <form
-        action="https://formspree.io/f/mwlvdawe"
-        method="POST"
-        enctype="multipart/form-data"
-      >
     
-       <input
-  type="hidden"
-  name="_next"
-  value="https://officialoc.github.io/OwnerCircle_/konfirmasi-gathering.html"
->
+<section class="form-card">
+  <h2>Data Peserta</h2>
 
-        <div class="field">
-          <label for="nama">
-            Nama lengkap <span class="required">*</span>
-          </label>
-          <input
-            type="text"
-            id="nama"
-            name="Nama Lengkap"
-            placeholder="Masukkan nama lengkap"
-            autocomplete="name"
-            required
-          >
-        </div>
+  <form onsubmit="kirimKeWhatsApp(event)">
 
-        <div class="field">
-          <label for="whatsapp">
-            Nomor WhatsApp <span class="required">*</span>
-          </label>
-          <input
-            type="tel"
-            id="whatsapp"
-            name="Nomor WhatsApp"
-            placeholder="Contoh: 081234567890"
-            autocomplete="tel"
-            required
-          >
-        </div>
+    <div class="field">
+      <label for="nama">Nama lengkap <span class="required">*</span></label>
+      <input type="text" id="nama" name="nama"
+        placeholder="Masukkan nama lengkap" autocomplete="name" required>
+    </div>
 
-        <div class="field">
-          <label for="usaha">
-            Nama usaha <span class="required">*</span>
-          </label>
-          <input
-            type="text"
-            id="usaha"
-            name="Nama Usaha"
-            placeholder="Masukkan nama usaha"
-            required
-          >
-        </div>
+    <div class="field">
+      <label for="whatsapp">Nomor WhatsApp <span class="required">*</span></label>
+      <input type="tel" id="whatsapp" name="whatsapp"
+        placeholder="Contoh: 081234567890" autocomplete="tel" required>
+    </div>
 
-        <div class="field">
-          <label for="jenis">
-            Jenis usaha <span class="required">*</span>
-          </label>
-          <select id="jenis" name="Jenis Usaha" required>
-            <option value="">Pilih jenis usaha</option>
-            <option value="Kuliner">Kuliner</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Jasa">Jasa</option>
-            <option value="Kreatif dan Digital">Kreatif dan Digital</option>
-            <option value="Retail dan Perdagangan">Retail dan Perdagangan</option>
-            <option value="Lainnya">Lainnya</option>
-          </select>
-        </div>
+    <div class="field">
+      <label for="usaha">Nama usaha <span class="required">*</span></label>
+      <input type="text" id="usaha" name="usaha"
+        placeholder="Masukkan nama usaha" required>
+    </div>
 
-        <div class="field">
-          <label for="jumlah">
-            Jumlah peserta <span class="required">*</span>
-          </label>
-          <select id="jumlah" name="Jumlah Peserta" required>
-            <option value="1">1 orang</option>
-            <option value="2">2 orang</option>
-            <option value="3">3 orang</option>
-            <option value="4">4 orang</option>
-            <option value="5">5 orang</option>
-          </select>
-          <p class="hint">
-            Pastikan jumlah peserta sesuai dengan pembayaran.
-          </p>
-        </div>
+    <div class="field">
+      <label for="jenis">Jenis usaha <span class="required">*</span></label>
+      <select id="jenis" name="jenis" required>
+        <option value="">Pilih jenis usaha</option>
+        <option value="Kuliner">Kuliner</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Jasa">Jasa</option>
+        <option value="Kreatif dan Digital">Kreatif dan Digital</option>
+        <option value="Retail dan Perdagangan">Retail dan Perdagangan</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
+    </div>
 
-        <div class="field">
-          <label for="bukti">
-            Bukti pembayaran
-          </label>
-          <input
-            type="file"
-            id="bukti"
-            name="Bukti Pembayaran"
-            accept="image/*,.pdf"
-          >
-          <p class="hint">
-            Format gambar atau PDF. Unggah hanya jika layanan formulir
-            mendukung file upload.
-          </p>
-        </div>
+    <div class="field">
+      <label for="jumlah">Jumlah peserta <span class="required">*</span></label>
+      <select id="jumlah" name="jumlah" required>
+        <option value="1">1 orang</option>
+        <option value="2">2 orang</option>
+        <option value="3">3 orang</option>
+        <option value="4">4 orang</option>
+        <option value="5">5 orang</option>
+      </select>
+      <p class="hint">HTM Rp85.000 per orang. Total dihitung otomatis di pesan WhatsApp.</p>
+    </div>
 
-        <div class="field">
-          <label for="catatan">Catatan tambahan</label>
-          <textarea
-            id="catatan"
-            name="Catatan"
-            rows="3"
-            placeholder="Opsional"
-          ></textarea>
-        </div>
+    <div class="field">
+      <label for="bukti">Foto bukti pembayaran <span class="required">*</span></label>
+      <input type="file" id="bukti" name="bukti"
+        accept="image/*" required>
+      <p class="hint">
+        Wajib pilih foto bukti transfer di sini. Setelah WhatsApp terbuka,
+        lampirkan kembali foto tersebut di chat sebelum mengirim pesan.
+      </p>
+    </div>
 
-        <div class="notice">
-          Dengan mengirim formulir ini, kamu menyatakan bahwa data yang
-          diberikan sudah benar. Pendaftaran dianggap selesai setelah
-          dikonfirmasi oleh panitia.
-        </div>
+    <div class="field">
+      <label for="catatan">Catatan tambahan</label>
+      <textarea id="catatan" name="catatan" rows="3"
+        placeholder="Opsional"></textarea>
+    </div>
 
-        <button type="submit" class="button">
-          Kirim Pendaftaran →
-        </button>
-      </form>
+    <div class="notice">
+      Pastikan data dan pembayaran sudah benar. Pesan pendaftaran akan
+      diteruskan ke WhatsApp panitia. Pendaftaran dikonfirmasi setelah
+      diperiksa oleh panitia.
+    </div>
 
-      <a href="Gathering.html" class="back-link">
-        ← Kembali ke informasi gathering
-      </a>
+    <button type="submit" class="button">
+      Lanjut ke WhatsApp →
+    </button>
+  </form>
+
+  <a href="Gathering.html" class="back-link">
+    ← Kembali ke informasi gathering
+  </a>
+</section>
+
     </section>
   </main>
 
   <footer>
     © 2026 Owner Circle. Grow Together.
   </footer>
-  
+
 <script>
   async function salinRekening() {
     const nomor = document.getElementById("accountNumber").textContent.trim();
@@ -509,6 +462,47 @@
     } catch (error) {
       pesan.textContent = "Silakan salin nomor rekening secara manual: " + nomor;
     }
+  }
+
+  function kirimKeWhatsApp(event) {
+    event.preventDefault();
+
+    const nama = document.getElementById("nama").value.trim();
+    const whatsapp = document.getElementById("whatsapp").value.trim();
+    const usaha = document.getElementById("usaha").value.trim();
+    const jenis = document.getElementById("jenis").value;
+    const jumlah = Number(document.getElementById("jumlah").value);
+    const buktiInput = document.getElementById("bukti");
+    const catatan = document.getElementById("catatan").value.trim();
+
+    if (!nama || !whatsapp || !usaha || !jenis || !jumlah || !buktiInput.files.length) {
+      alert("Mohon lengkapi semua data dan pilih foto bukti pembayaran.");
+      return;
+    }
+
+    const bukti = buktiInput.files[0];
+    const total = jumlah * 85000;
+
+    const pesan = [
+      "PENDAFTARAN GATHERING OWNER CIRCLE",
+      "Pertemuan 01",
+      "",
+      "Nama lengkap: " + nama,
+      "Nomor WhatsApp: " + whatsapp,
+      "Nama usaha: " + usaha,
+      "Jenis usaha: " + jenis,
+      "Jumlah peserta: " + jumlah + " orang",
+      "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
+      "Nama file bukti transfer: " + bukti.name,
+      "",
+      "Catatan: " + (catatan || "-"),
+      "",
+      "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
+    ].join("\n");
+
+    const url = "https://wa.me/6285822388034?text=" + encodeURIComponent(pesan);
+
+    window.open(url, "_blank");
   }
 </script>
 
