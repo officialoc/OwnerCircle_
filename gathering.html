@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informasi Gathering — Owner Circle</title>
+
+  <style>
+    :root {
+      --cream: #F3EBDD;
+      --light: #FAF7F0;
+      --brown: #79563D;
+      --dark-brown: #543A2A;
+      --black: #201C19;
+      --muted: #6F6256;
+      --border: #D9CDBB;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(100% - 36px, 760px);
+      margin: 0 auto;
+    }
+
+    .navbar {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .hero {
+      padding: 72px 0 32px;
+    }
+
+    .eyebrow {
+      color: var(--brown);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin: 14px 0;
+      font-size: clamp(36px, 7vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .description {
+      max-width: 580px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .card {
+      margin: 28px 0;
+      padding: 28px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .info-item {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .info-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 20px;
+      border: 1px solid var(--brown);
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .button-primary {
+      background: var(--brown);
+      color: #FFFFFF;
+    }
+
+    .button-primary:hover {
+      background: var(--dark-brown);
+    }
+
+    .button-secondary {
+      color: var(--brown);
+    }
+
+    .button-secondary:hover {
+      background: var(--cream);
+    }
+
+    footer {
+      margin-top: 64px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding-top: 48px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="images/LOGO OC.png" alt="Logo Owner Circle">
+        <span>OWNER CIRCLE</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">Owner Circle · Pertemuan 01</span>
+
+      <h1>Grow together,<br>start with a meeting.</h1>
+
+      <p class="description">
+        Sebuah ruang untuk bertemu, berbagi cerita, bertukar pengalaman,
+        dan bertumbuh bersama para pemilik usaha.
+      </p>
+
+      <div class="actions">
+        <a href="daftar-gathering.html" class="button button-primary">
+          Lanjutkan Pendaftaran →
+        </a>
+
+        <a href="index.html" class="button button-secondary">
+          Kembali ke Website
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Informasi Gathering</h2>
+
+      <div class="info-list">
+        <div class="info-item">
+          <span class="info-label">Nama Acara</span>
+          <div class="info-value">Owner Circle — Pertemuan 01</div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Tanggal</span>
+          <div class="info-value">12 Oktober 2026</div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Lokasi</span>
+          <div class="info-value">Kopikir x Difella Jhonlin Tower</div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">HTM</span>
+          <div class="info-value">Rp85.000 / peserta</div>
+        </div>
+      </div>
+
+      <p class="note">
+        Pastikan informasi acara dan biaya sudah sesuai sebelum halaman ini
+        dipublikasikan. Informasi tambahan dapat diperbarui oleh panitia.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Apa yang akan kamu dapatkan?</h2>
+
+      <p>
+        Bukan sekadar pertemuan, tetapi kesempatan untuk mengenal sesama
+        pemilik usaha, berdiskusi, berbagi pengalaman, dan membangun koneksi
+        baru dalam suasana yang santai dan hangat.
+      </p>
+
+      <div class="actions">
+        <a href="daftar-gathering.html" class="button button-primary">
+          Daftar Gathering →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Owner Circle. Grow Together.
+  </footer>
+</body>
+</html>

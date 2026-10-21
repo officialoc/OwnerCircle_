@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Diproses — Owner Circle</title>
+
+  <style>
+    :root {
+      --cream: #F3EBDD;
+      --light: #FAF7F0;
+      --brown: #79563D;
+      --dark-brown: #543A2A;
+      --black: #201C19;
+      --muted: #6F6256;
+      --border: #D9CDBB;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container {
+      width: min(100% - 36px, 720px);
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--black);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 0;
+    }
+
+    .confirmation {
+      width: 100%;
+      padding: 36px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .status-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--brown);
+      border-radius: 50%;
+      color: var(--brown);
+      font-size: 32px;
+    }
+
+    .eyebrow {
+      color: var(--brown);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(30px, 6vw, 44px);
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
+
+    .description {
+      max-width: 500px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .status-box {
+      margin: 28px 0;
+      padding: 20px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      text-align: left;
+    }
+
+    .status-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--dark-brown);
+    }
+
+    .status-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 20px;
+      border: 1px solid var(--brown);
+      border-radius: 5px;
+      background: var(--brown);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: var(--dark-brown);
+    }
+
+    .secondary-link {
+      display: block;
+      margin-top: 18px;
+      color: var(--brown);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    footer {
+      padding: 24px 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .confirmation {
+        padding: 26px 20px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="images/LOGO OC.png" alt="Logo Owner Circle">
+        <span>OWNER CIRCLE</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="confirmation">
+      <div class="status-icon" aria-hidden="true">✓</div>
+
+      <span class="eyebrow">Pertemuan 01 · Gathering</span>
+
+      <h1>Pendaftaranmu sedang diproses!</h1>
+
+      <p class="description">
+        Terima kasih sudah mendaftar di Owner Circle.
+        Data pendaftaranmu telah dikirim. Sekarang, tunggu konfirmasi
+        dari panitia untuk proses verifikasi pembayaran.
+      </p>
+
+      <div class="status-box">
+        <strong>Selanjutnya, apa yang perlu kamu lakukan?</strong>
+        <p>
+          Pastikan pembayaran sudah dilakukan sesuai informasi rekening
+          yang tersedia. Panitia akan menghubungimu melalui WhatsApp
+          untuk mengonfirmasi pembayaran dan status pendaftaranmu.
+        </p>
+      </div>
+
+      <p class="description">
+        Mohon bersabar selama proses verifikasi berlangsung.
+        Sampai bertemu di gathering Owner Circle!
+      </p>
+
+      <div style="margin-top: 28px;">
+        <a href="Gathering.html" class="button">
+          Kembali ke Informasi Gathering
+        </a>
+      </div>
+
+      <a href="index.html" class="secondary-link">
+        Kembali ke halaman utama
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Owner Circle. Grow Together.
+  </footer>
+</body>
+</html>

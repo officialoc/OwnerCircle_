@@ -16,10 +16,10 @@
     :root {
       --bg: #101310;
       --panel: #191e19;
-      --lime: #d9f27e;
+      --lime: #864f41;
       --white: #f5f6f1;
-      --muted: #a5ada1;
-      --line: #30372e;
+      --muted: #adaaa1;
+      --line: #37352e;
     }
 
     * {
@@ -34,7 +34,7 @@
       align-items: center;
       justify-content: center;
       background:
-        radial-gradient(ellipse at 50% 0%, #283225 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 0%, #322c25 0%, transparent 55%),
         var(--bg);
       color: var(--white);
       font-family: "DM Sans", sans-serif;
@@ -60,7 +60,7 @@
       place-items: center;
       border-radius: 14px;
       background: var(--lime);
-      color: #151a12;
+      color: #1a1512;
       font-size: 25px;
       font-weight: 800;
     }
@@ -82,7 +82,7 @@
       padding: 34px;
       border: 1px solid var(--line);
       border-radius: 26px;
-      background: rgba(25, 30, 25, 0.94);
+      background: rgba(30, 29, 25, 0.94);
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
     }
 
@@ -92,9 +92,9 @@
       display: grid;
       place-items: center;
       margin-bottom: 25px;
-      border: 1px solid #49583b;
+      border: 1px solid #58453b;
       border-radius: 22px;
-      background: #293524;
+      background: #352f24;
       color: var(--lime);
       font-size: 35px;
     }
@@ -151,7 +151,7 @@
       padding: 15px 18px;
       border-radius: 14px;
       background: var(--lime);
-      color: #171c12;
+      color: #1c1712;
       font-size: 14px;
       font-weight: 800;
       text-align: center;
@@ -161,7 +161,7 @@
 
     .whatsapp-button:hover {
       transform: translateY(-2px);
-      background: #e5f9a6;
+      background: #f9d9a6;
     }
 
     .notice {
@@ -172,7 +172,7 @@
       padding: 14px;
       border: 1px solid var(--line);
       border-radius: 13px;
-      color: #b6beb2;
+      color: #bebab2;
       font-size: 12px;
       line-height: 1.7;
     }
@@ -218,6 +218,30 @@
         margin-bottom: 23px;
       }
     }
+
+
+/* Khusus logo halaman Berhasil.html */
+.brand .brand-logo,
+img.brand-logo {
+  display: block !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  object-fit: contain !important;
+  flex: 0 0 40px !important;
+  border-radius: 0;
+}
+
+/* Pastikan baris logo tetap rapi */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
   </style>
 </head>
 
@@ -225,8 +249,11 @@
   <main class="page">
 
     <header class="brand">
-      <div class="brand-mark">O.</div>
-      <div>
+    <img
+  src="images/LOGO OC.png"
+  alt="Logo Owner Circle"
+  class="brand-logo"
+>
         <div class="brand-name">OWNER CIRCLE</div>
         <div class="brand-subtitle">GROW TOGETHER. BUILD TOGETHER.</div>
       </div>
@@ -265,6 +292,9 @@
         Bergabung ke Komunitas
         <span aria-hidden="true">↗</span>
       </a>
+      <a href="#informasi-gathering" class="button button-primary">
+  Lihat Informasi Gathering →
+</a>  
 
       <div class="notice">
         <span aria-hidden="true">ⓘ</span>
@@ -286,5 +316,7 @@
     </footer>
 
   </main>
+
+  
 </body>
 </html>
