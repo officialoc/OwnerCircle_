@@ -1,12 +1,19 @@
+
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const SUBMISSION_ENDPOINT = "https://formspree.io/f/meaevlqj";
+const SUPABASE_URL = "sb_publishable_Ddd1UZl8onwtMYQcxikaUQ_S3vwkdmM";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Ddd1UZl8onwtMYQcxikaUQ_S3vwkdmM";
 
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registrationForm");
   const status = document.getElementById("formStatus");
-
   const year = document.getElementById("year");
+
   if (year) {
     year.textContent = new Date().getFullYear();
   }
@@ -18,8 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.getElementById("navRegister")?.addEventListener("click", openRegistration);
-  document.getElementById("heroRegister")?.addEventListener("click", openRegistration);
+  document.getElementById("navRegister")
+    ?.addEventListener("click", openRegistration);
+
+  document.getElementById("heroRegister")
+    ?.addEventListener("click", openRegistration);
 
   if (!form) {
     console.error("Form registrationForm tidak ditemukan.");
@@ -31,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const button = form.querySelector('button[type="submit"]');
 
+    if (!form.reportValidity()) return;
+
     if (button) {
       button.disabled = true;
       button.textContent = "Mengirim...";
@@ -40,33 +52,29 @@ document.addEventListener("DOMContentLoaded", () => {
       status.textContent = "Sedang mengirim pendaftaran...";
     }
 
+    const dataPendaftaran = {
+      nama: document.getElementById("fullName").value.trim(),
+      whatsapp: document.getElementById("phone").value.trim(),
+      nama_usaha: document.getElementById("business").value.trim(),
+      jenis_usaha: document.getElementById("businessType").value,
+      alasan_bergabung: document.getElementById("reason").value.trim()
+    };
+
     try {
-      const response = await fetch(SUBMISSION_ENDPOINT, {
-        method: "POST",
-        body: new FormData(form),
-        headers: {
-          Accept: "application/json"
-        }
-      });
+      const { error } = await supabaseClient
+        .from("pendaftaran")
+        .insert([dataPendaftaran]);
 
-      if (response.ok) {
-        window.location.href = "berhasil.html";
-        return;
-      }
+      if (error) throw error;
 
-      const result = await response.json().catch(() => ({}));
-
-      if (status) {
-        status.textContent =
-          result.errors?.map(error => error.message).join(", ") ||
-          "Pendaftaran gagal dikirim. Silakan coba lagi.";
-      }
+      window.location.href = "Berhasil.html";
+      return;
     } catch (error) {
-      console.error("Gagal mengirim pendaftaran:", error);
+      console.error("Gagal menyimpan pendaftaran:", error);
 
       if (status) {
         status.textContent =
-          "Koneksi bermasalah. Periksa internet lalu coba lagi.";
+          "Pendaftaran gagal disimpan. Silakan coba lagi.";
       }
     }
 
