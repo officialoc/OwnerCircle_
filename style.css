@@ -318,74 +318,204 @@ h1 span, h2 span { color: var(--orange); }
 
 .social-links a:hover { color: var(--orange); }
 
+
+/* OWNER CIRCLE — REGISTRATION */
 .register-section {
-  padding: 95px 20px;
-  background: var(--white);
+  padding: 100px 7%;
+  background: var(--cream);
   text-align: center;
 }
 
-.register-section > p:not(.eyebrow):not(.status) {
+.register-section > .eyebrow {
+  margin-bottom: 22px;
+}
+
+.register-section > h2 {
+  margin-bottom: 22px;
+  font-size: clamp(38px, 5vw, 64px);
+}
+
+.register-section > p:not(.eyebrow) {
+  max-width: 480px;
+  margin: 0 auto;
   color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
 }
 
 .form-card {
-  width: min(100%, 500px);
-  margin: 35px auto 0;
-  padding: 32px;
+  width: 100%;
+  max-width: 760px;
+  margin: 48px auto 0;
+  padding: clamp(24px, 5vw, 56px);
   border: 1px solid var(--line);
-  background: var(--cream);
+  background: var(--white);
   text-align: left;
 }
 
-.form-card h3 { font-size: 25px; margin-bottom: 8px; }
-.form-card > p { color: var(--muted); font-size: 13px; }
+.form-card h3 {
+  margin-bottom: 10px;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.form-card > p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
 
 .form-card form {
   display: flex;
   flex-direction: column;
+  gap: 23px;
+  margin-top: 32px;
 }
 
-.form-card label {
-  margin-top: 16px;
-  margin-bottom: 6px;
-  font-size: 13px;
+.form-card .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.form-card .form-group > label {
+  margin: 0;
+  color: var(--dark);
+  font-size: 12px;
   font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 .form-card input:not([type="checkbox"]),
 .form-card select,
 .form-card textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #d4cec1;
-  border-radius: 0;
-  background: var(--white);
+  min-height: 50px;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #faf8f2;
   color: var(--dark);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+  color: #a09a8e;
 }
 
 .form-card input:focus,
 .form-card select:focus,
 .form-card textarea:focus {
-  outline: 2px solid var(--orange);
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--orange);
+  background: var(--white);
 }
 
-.consent {
+.form-card textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-card .form-group:has(#consent) {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
-  gap: 10px;
-  font-weight: 400 !important;
-  line-height: 1.5;
+  gap: 12px;
 }
 
-.consent input { margin-top: 5px; }
+.form-card #consent {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0;
+  accent-color: var(--orange);
+}
 
-.text-button {
-  border: none;
-  background: transparent;
-  color: var(--dark);
-  padding: 10px;
-  cursor: pointer;
+.form-card .form-group:has(#consent) label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.form-actions {
+  margin-top: 4px;
+}
+
+.submit-button {
+  display: flex;
+  width: 100%;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 22px;
+  border: 1px solid var(--orange);
+  background: var(--orange);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.submit-button:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+
+.submit-arrow {
+  font-size: 22px;
+  font-weight: 400;
+  transition: transform 0.25s ease;
+}
+
+.submit-button:hover .submit-arrow {
+  transform: translate(3px, -3px);
+}
+
+.submit-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.form-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.form-card .status {
+  min-height: 0;
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.form-card .status:empty {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .register-section {
+    padding: 70px 5%;
+  }
+
+  .form-card {
+    margin-top: 32px;
+    padding: 25px 19px;
+  }
+
+  .form-card form {
+    gap: 20px;
+    margin-top: 26px;
+  }
 }
 
 .status {
@@ -433,7 +563,6 @@ footer p, footer > a:last-child {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 
-css
 .success-page {
   min-height: 100vh;
   display: flex;
