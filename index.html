@@ -153,46 +153,131 @@ s
     <h3>Formulir pendaftaran</h3>
     <p>Kenalan dulu, yuk. Lengkapi data berikut.</p>
 
-    <form id="registrationForm">
-      <label for="fullName">Nama lengkap</label>
-      <input id="fullName" name="fullName" type="text"
-        placeholder="Masukkan nama lengkap" maxlength="100" required>
+    
+<form id="registrationForm" action="https://formspree.io/f/meaevlqj" method="POST">
 
-      <label for="phone">Nomor WhatsApp</label>
-      <input id="phone" name="phone" type="tel"
-        placeholder="08xxxxxxxxxx" maxlength="25" required>
+  <div class="form-group">
+    <label for="fullName">Nama Lengkap</label>
+    <input
+      type="text"
+      id="fullName"
+      name="fullName"
+      placeholder="Masukkan nama lengkap"
+      autocomplete="name"
+      required
+    >
+  </div>
 
-      <label for="business">Nama usaha</label>
-      <input id="business" name="business" type="text"
-        placeholder="Masukkan nama usaha kamu" maxlength="120" required>
+  <div class="form-group">
+    <label for="nickname">Nama Panggilan</label>
+    <input
+      type="text"
+      id="nickname"
+      name="nickname"
+      placeholder="Nama yang biasa dipanggil"
+      required
+    >
+  </div>
 
-      <label for="businessType">Jenis usaha</label>
-      <select id="businessType" name="businessType" required>
-        <option value="">Pilih jenis usaha</option>
-        <option value="Kuliner / F&B">Kuliner / F&B</option>
-        <option value="Fashion">Fashion</option>
-        <option value="Kecantikan">Kecantikan</option>
-        <option value="Jasa">Jasa</option>
-        <option value="Kreatif / Media">Kreatif / Media</option>
-        <option value="Perdagangan / Retail">Perdagangan / Retail</option>
-        <option value="Teknologi">Teknologi</option>
-        <option value="Lainnya">Lainnya</option>
-      </select>
+  <div class="form-group">
+    <label for="socialMedia">Instagram / Media Sosial</label>
+    <input
+      type="text"
+      id="socialMedia"
+      name="socialMedia"
+      placeholder="Contoh: @namakamu atau tautan akun"
+      required
+    >
+  </div>
 
-      <label for="reason">Apa yang ingin kamu dapatkan dari Owner Circle?</label>
-      <textarea id="reason" name="reason" rows="4"
-        placeholder="Ceritakan harapanmu bergabung..."
-        maxlength="1000" required></textarea>
+  <div class="form-group">
+    <label for="business">Nama Brand / Usaha</label>
+    <input
+      type="text"
+      id="business"
+      name="business"
+      placeholder="Masukkan nama brand atau usaha"
+      required
+    >
+  </div>
 
-      <label class="consent">
-        <input type="checkbox" id="consent" name="consent" required>
-        Saya setuju data ini digunakan untuk pendaftaran dan komunikasi terkait Owner Circle.
-      </label>
+  <div class="form-group">
+    <label for="businessType">Bidang Usaha</label>
+    <select id="businessType" name="businessType" required>
+      <option value="" disabled selected>Pilih bidang usaha</option>
+      <option value="Kuliner/F&B">Kuliner / F&amp;B</option>
+      <option value="Fashion/Pakaian">Fashion / Pakaian</option>
+      <option value="Kecantikan/Skincare">Kecantikan / Skincare</option>
+      <option value="Jasa/Kreatif">Jasa / Kreatif</option>
+      <option value="Retail/Perdagangan">Retail / Perdagangan</option>
+      <option value="Digital/Teknologi">Digital / Teknologi</option>
+      <option value="Lainnya">Lainnya</option>
+    </select>
+  </div>
 
-      <button class="button full-width" type="submit">
-        Kirim Pendaftaran ↗
-      </button>
-    </form>
+  <div class="form-group">
+    <label for="businessDuration">Sudah Berapa Lama Usahamu Berjalan?</label>
+    <select id="businessDuration" name="businessDuration" required>
+      <option value="" disabled selected>Pilih lama usaha</option>
+      <option value="6 bulan - 1 tahun">6 bulan – 1 tahun</option>
+      <option value="1 - 3 tahun">1 – 3 tahun</option>
+      <option value="3 - 5 tahun">3 – 5 tahun</option>
+      <option value="Lebih dari 5 tahun">Lebih dari 5 tahun</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="discoverySource">Dari Mana Mengetahui Owner Circle?</label>
+    <select id="discoverySource" name="discoverySource" required>
+      <option value="" disabled selected>Pilih sumber informasi</option>
+      <option value="Instagram">Instagram</option>
+      <option value="WhatsApp">WhatsApp</option>
+      <option value="Teman/Kenalan">Teman / Kenalan</option>
+      <option value="Lainnya">Lainnya</option>
+    </select>
+  </div>
+
+  <div class="form-group" id="otherSourceGroup" hidden>
+    <label for="otherSource">Sumber Informasi Lainnya</label>
+    <input
+      type="text"
+      id="otherSource"
+      name="otherSource"
+      placeholder="Ceritakan dari mana kamu mengetahui Owner Circle"
+      disabled
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="reason">Apa yang Ingin Kamu Dapatkan dari Owner Circle?</label>
+    <textarea
+      id="reason"
+      name="reason"
+      rows="4"
+      placeholder="Ceritakan harapanmu bergabung dengan Owner Circle..."
+      required
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>
+      <input
+        type="checkbox"
+        id="consent"
+        name="consent"
+        value="Setuju"
+        required
+      >
+      Saya menyetujui pengiriman data pendaftaran ini kepada panitia Owner Circle.
+    </label>
+  </div>
+
+  <p id="formStatus" role="status" aria-live="polite"></p>
+
+  <button type="submit">Kirim Pendaftaran ↗</button>
+
+</form>
+
 
     <p id="formStatus" class="status" role="status" aria-live="polite"></p>
   </div>
@@ -205,7 +290,6 @@ s
     <a href="#home">Kembali ke atas ↑</a>
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
 </body>
 </html>

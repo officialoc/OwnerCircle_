@@ -1,15 +1,9 @@
 
 "use strict";
 
-const SUPABASE_URL = "sb_publishable_Ddd1UZl8onwtMYQcxikaUQ_S3vwkdmM";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Ddd1UZl8onwtMYQcxikaUQ_S3vwkdmM";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-
 document.addEventListener("DOMContentLoaded", () => {
+  const SUBMISSION_ENDPOINT = "https://formspree.io/f/meaevlqj";
+
   const form = document.getElementById("registrationForm");
   const status = document.getElementById("formStatus");
   const year = document.getElementById("year");
@@ -31,6 +25,32 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("heroRegister")
     ?.addEventListener("click", openRegistration);
 
+    
+const sourceSelect = document.getElementById("discoverySource");
+const otherSourceGroup = document.getElementById("otherSourceGroup");
+const otherSourceInput = document.getElementById("otherSource");
+
+function toggleOtherSource() {
+  const showOther = sourceSelect?.value === "Lainnya";
+
+  if (otherSourceGroup) {
+    otherSourceGroup.hidden = !showOther;
+  }
+
+  if (otherSourceInput) {
+    otherSourceInput.disabled = !showOther;
+    otherSourceInput.required = showOther;
+
+    if (!showOther) {
+      otherSourceInput.value = "";
+    }
+  }
+}
+
+sourceSelect?.addEventListener("change", toggleOtherSource);
+toggleOtherSource();
+
+
   if (!form) {
     console.error("Form registrationForm tidak ditemukan.");
     return;
@@ -41,8 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const button = form.querySelector('button[type="submit"]');
 
-    if (!form.reportValidity()) return;
-
     if (button) {
       button.disabled = true;
       button.textContent = "Mengirim...";
@@ -52,29 +70,33 @@ document.addEventListener("DOMContentLoaded", () => {
       status.textContent = "Sedang mengirim pendaftaran...";
     }
 
-    const dataPendaftaran = {
-      nama: document.getElementById("fullName").value.trim(),
-      whatsapp: document.getElementById("phone").value.trim(),
-      nama_usaha: document.getElementById("business").value.trim(),
-      jenis_usaha: document.getElementById("businessType").value,
-      alasan_bergabung: document.getElementById("reason").value.trim()
-    };
-
     try {
-      const { error } = await supabaseClient
-        .from("pendaftaran")
-        .insert([dataPendaftaran]);
+      const response = await fetch(SUBMISSION_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          Accept: "application/json"
+        }
+      });
 
-      if (error) throw error;
+      if (response.ok) {
+        window.location.href = "Berhasil.html";
+        return;
+      }
 
-      window.location.href = "Berhasil.html";
-      return;
-    } catch (error) {
-      console.error("Gagal menyimpan pendaftaran:", error);
+      const result = await response.json().catch(() => ({}));
 
       if (status) {
         status.textContent =
-          "Pendaftaran gagal disimpan. Silakan coba lagi.";
+          result.errors?.map(error => error.message).join(", ") ||
+          "Pendaftaran gagal dikirim. Silakan coba lagi.";
+      }
+    } catch (error) {
+      console.error("Gagal mengirim pendaftaran:", error);
+
+      if (status) {
+        status.textContent =
+          "Koneksi bermasalah. Periksa internet lalu coba lagi.";
       }
     }
 
