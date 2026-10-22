@@ -80,7 +80,7 @@
         });
 
         if (response.ok) {
-          window.location.href = "Berhasil.html";
+          window.location.href = "berhasil.html";
           return;
         }
 
