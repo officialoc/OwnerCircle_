@@ -326,13 +326,14 @@
 
 
 
+
 <script>
-const RG_FORMS_URL = "https://script.google.com/macros/s/AKfycbx2vsUZ5kWyUhB72Az34hT07qFIb5I5sXTZ_ijLhm2y8o6Li8cB9Ah18sbP0E_D6eM/exec";
+const RG_FORMS_URL = "https://script.google.com/macros/s/AKfycbyMY9ToTKdXxeKKcZcZ6Shy8yUh3t2hODEoP4ZcXJocHOLtRcy8SSxBODZY-_4WC8sBYw/exec";
 
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", function (event) {
-  event.preventDefault();   
+  event.preventDefault();
 
   const nama = document.getElementById("nama").value.trim();
   const whatsapp = document.getElementById("whatsapp").value.trim();
@@ -347,8 +348,8 @@ loginForm.addEventListener("submit", function (event) {
   const script = document.createElement("script");
 
   const params = new URLSearchParams({
-    action: "checkMember",
-    nama: nama,
+    action: "login",
+    nama_lengkap: nama,
     whatsapp: whatsapp,
     callback: callbackName
   });
@@ -379,16 +380,19 @@ loginForm.addEventListener("submit", function (event) {
 
     bersihkan();
 
-    if (!result || result.status === "error") {
-      alert("Data belum bisa diperiksa. Coba lagi nanti.");
+    if (!result || typeof result.success !== "boolean") {
+      alert("Respons server tidak valid. Coba lagi nanti.");
       return;
     }
 
-    if (result.exists === true) {
+    if (result.success) {
+      sessionStorage.setItem(
+        "ocMember",
+        JSON.stringify(result.member)
+      );
       window.location.href = "index.html";
     } else {
-      alert("Akun belum terdaftar. Silakan buat akun terlebih dahulu.");
-      window.location.href = "daftar.html";
+      alert(result.message || "Login gagal.");
     }
   };
 
@@ -402,6 +406,7 @@ loginForm.addEventListener("submit", function (event) {
   document.body.appendChild(script);
 });
 </script>
+
 
 </body>
 </html>
