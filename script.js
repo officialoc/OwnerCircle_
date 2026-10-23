@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!form.reportValidity()) return;
 
     const button = form.querySelector('button[type="submit"]');
+    const originalButtonText = button?.innerHTML;
 
     if (button) {
       button.disabled = true;
@@ -87,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fields = {
       nama_lengkap: getValue("fullName"),
       nama_panggilan: getValue("nickname"),
+      nomor_whatsapp: getValue("whatsapp"),
       nama_bisnis: getValue("business"),
       jenis_usaha: getValue("businessType"),
       lama_usaha: getValue("businessDuration"),
@@ -103,17 +105,16 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({
           tab: SHEET_TAB,
-          fields: fields
+          fields
         })
       });
 
       const result = await response.json().catch(() => null);
 
-      if (!response.ok || result?.success === false) {
+      if (!response.ok || result?.result !== "success") {
         throw new Error(
-          result?.message ||
           result?.error ||
-          "Pendaftaran gagal disimpan."
+          "RG Forms belum mengonfirmasi penyimpanan data."
         );
       }
 
@@ -122,19 +123,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       window.location.href = "berhasil.html";
-
     } catch (error) {
       console.error("Gagal mengirim pendaftaran:", error);
 
       if (status) {
         status.textContent =
-          "Pendaftaran belum dapat dipastikan tersimpan. " +
-          "Silakan coba lagi atau hubungi panitia.";
+          "Pendaftaran gagal dikirim. Periksa koneksi atau konfigurasi RG Forms, lalu coba lagi.";
       }
 
       if (button) {
         button.disabled = false;
-        button.textContent = "Kirim Pendaftaran ↗";
+        button.innerHTML =
+          originalButtonText || "Kirim Pendaftaran ↗";
       }
     }
   });
