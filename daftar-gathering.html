@@ -126,6 +126,11 @@
       font-size: 13px;
     }
 
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
     .hint {
       margin: 6px 0 0;
       color: var(--muted);
@@ -411,6 +416,28 @@
         </div>
 
         <div class="field">
+          <label for="discoverySource">Dari mana mengetahui Owner Circle? <span class="required">*</span></label>
+          <select id="discoverySource" name="discoverySource" required>
+            <option value="" disabled selected>Pilih sumber informasi</option>
+            <option value="Instagram">Instagram</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Teman / Kenalan">Teman / Kenalan</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <div class="field" id="otherSourceGroup" hidden>
+          <label for="otherSource">Sebutkan sumber informasi lainnya <span class="required">*</span></label>
+          <input type="text" id="otherSource" name="otherSource" placeholder="Tuliskan dari mana kamu mengetahui Owner Circle" disabled>
+        </div>
+
+        <div class="field">
+          <label for="reason">Apa keinginan yang ingin dicapai di Owner Circle? <span class="required">*</span></label>
+          <textarea id="reason" name="reason" rows="3"
+            placeholder="Ceritakan harapan atau tujuan yang ingin dicapai..." required></textarea>
+        </div>
+
+        <div class="field">
           <label for="jumlah">Jumlah peserta <span class="required">*</span></label>
           <select id="jumlah" name="jumlah" required>
             <option value="1">1 orang</option>
@@ -466,7 +493,6 @@
   </footer>
 
 <script>
-  // GANTI URL DI BAWAH INI DENGAN WEB APP URL GOOGLE APPS SCRIPT MILIKMU YANG BARU
   const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbz8XIUekABxlRtjvS2QgHqHhor9sNvFjDgICsn8X3fOkI8sJB3XRUqY1Reof_jRjz89MA/exec";
 
   async function salinRekening() {
@@ -480,6 +506,26 @@
       pesan.textContent = "Silakan salin nomor rekening secara manual: " + nomor;
     }
   }
+
+  const sourceSelect = document.getElementById("discoverySource");
+  const otherSourceGroup = document.getElementById("otherSourceGroup");
+  const otherSourceInput = document.getElementById("otherSource");
+
+  function toggleOtherSource() {
+    const showOther = sourceSelect?.value === "Lainnya";
+    if (otherSourceGroup) {
+      otherSourceGroup.hidden = !showOther;
+    }
+    if (otherSourceInput) {
+      otherSourceInput.disabled = !showOther;
+      otherSourceInput.required = showOther;
+      if (!showOther) {
+        otherSourceInput.value = "";
+      }
+    }
+  }
+  sourceSelect?.addEventListener("change", toggleOtherSource);
+  toggleOtherSource();
 
   const daftarMinuman = [
     "Jus alpukat",
@@ -544,6 +590,12 @@
     const usaha = document.getElementById("usaha").value.trim();
     const jenis = document.getElementById("jenis").value;
     const businessDuration = document.getElementById("businessDuration").value;
+    
+    const discoverySource = document.getElementById("discoverySource").value;
+    const otherSource = document.getElementById("otherSource").value.trim();
+    const sourceFinal = discoverySource === "Lainnya" && otherSource ? "Lainnya: " + otherSource : discoverySource;
+
+    const reason = document.getElementById("reason").value.trim();
     const jumlah = Number(document.getElementById("jumlah").value);
     const buktiInput = document.getElementById("bukti");
     const catatan = document.getElementById("catatan").value.trim();
@@ -560,7 +612,7 @@
 
     let catatanFinal = catatan || "-";
 
-    if (!nama || !nickname || !whatsapp || !socialMedia || !usaha || !jenis || !businessDuration || !jumlah || !buktiInput.files.length) {
+    if (!nama || !nickname || !whatsapp || !socialMedia || !usaha || !jenis || !businessDuration || !discoverySource || !reason || !jumlah || !buktiInput.files.length) {
       alert("Mohon lengkapi semua data dan pilih foto bukti pembayaran.");
       return;
     }
@@ -575,7 +627,6 @@
     submitBtn.textContent = "Menyimpan data...";
     statusDiv.textContent = "Sedang mengirim data ke spreadsheet...";
 
-    // Bungkus data untuk dikirim ke Spreadsheet
     const fields = {
       nama_lengkap: nama,
       nama_panggilan: nickname,
@@ -584,6 +635,8 @@
       nama_usaha: usaha,
       jenis_usaha: jenis,
       lama_usaha: businessDuration,
+      sumber_informasi: sourceFinal,
+      keinginan_dicapai: reason,
       jumlah_peserta: jumlah + " orang (Total: Rp" + total.toLocaleString("id-ID") + ")",
       pilihan_minuman: pilihanMinumanArray.join(", "),
       catatan: catatanFinal,
@@ -591,7 +644,6 @@
     };
 
     try {
-      // Kirim data ke Google Apps Script / Spreadsheet
       const response = await fetch(SUBMISSION_ENDPOINT, {
         method: "POST",
         headers: {
@@ -608,48 +660,38 @@
 
       statusDiv.textContent = "Data berhasil disimpan! Membuka WhatsApp...";
 
-      // Buat format pesan WhatsApp
-      const pesan = [
-        "PENDAFTARAN GATHERING OWNER CIRCLE",
-        "Pertemuan ke 02",
-        "",
-        "Nama lengkap: " + nama,
-        "Nama panggilan: " + nickname,
-        "Nomor WhatsApp: " + whatsapp,
-        "Instagram / Medsos: " + socialMedia,
-        "Nama usaha: " + usaha,
-        "Jenis usaha: " + jenis,
-        "Lama usaha berjalan: " + businessDuration,
-        "Jumlah peserta: " + jumlah + " orang",
-        "",
-        "PILIHAN MINUMAN:",
-        ...pilihanMinumanArray,
-        "",
-        "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
-        "Nama file bukti transfer: " + bukti.name,
-        "",
-        "Catatan tambahan: " + catatanFinal,
-        "",
-        "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
-      ].join("\n");
-
-      const url = "https://wa.me/6281219969503?text=" + encodeURIComponent(pesan);
-
-      // Buka WhatsApp di tab baru & arahkan ke halaman konfirmasi
-      window.open(url, "_blank");
-      window.location.href = "konfirmasi-gathering.html";
-
     } catch (error) {
       console.error("Error:", error);
-      statusDiv.textContent = "Terjadi kendala koneksi ke database, tapi kamu tetap diarahkan ke WhatsApp.";
-      
-      // Tetap arahkan ke WhatsApp meskipun gagal koneksi spreadsheet agar user tidak terhalang
-      setTimeout(() => {
-        const pesanFallback = "Halo panitia, saya mendaftar gathering Owner Circle atas nama " + nama;
-        window.open("https://wa.me/6281219969503?text=" + encodeURIComponent(pesanFallback), "_blank");
-        window.location.href = "konfirmasi-gathering.html";
-      }, 1500);
+      statusDiv.textContent = "Melanjutkan ke WhatsApp...";
     }
+
+    const teksMinuman = pilihanMinumanArray.join("\n");
+    const pesan = 
+      "PENDAFTARAN GATHERING OWNER CIRCLE\n" +
+      "Pertemuan ke 02\n\n" +
+      "Nama lengkap: " + nama + "\n" +
+      "Nama panggilan: " + nickname + "\n" +
+      "Nomor WhatsApp: " + whatsapp + "\n" +
+      "Instagram / Medsos: " + socialMedia + "\n" +
+      "Nama usaha: " + usaha + "\n" +
+      "Jenis usaha: " + jenis + "\n" +
+      "Lama usaha berjalan: " + businessDuration + "\n" +
+      "Sumber informasi: " + sourceFinal + "\n" +
+      "Keinginan dicapai: " + reason + "\n" +
+      "Jumlah peserta: " + jumlah + " orang\n\n" +
+      "PILIHAN MINUMAN:\n" +
+      teksMinuman + "\n\n" +
+      "Total pembayaran: Rp" + total.toLocaleString("id-ID") + "\n" +
+      "Nama file bukti transfer: " + bukti.name + "\n\n" +
+      "Catatan tambahan: " + catatanFinal + "\n\n" +
+      "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!";
+
+    const url = "https://wa.me/6281219969503?text=" + encodeURIComponent(pesan);
+
+    setTimeout(() => {
+      window.open(url, "_blank");
+      window.location.href = "konfirmasi-gathering.html";
+    }, 1000);
   }
 </script>
 
