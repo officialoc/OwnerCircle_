@@ -325,9 +325,9 @@
 </a>
 
 
+
 <script>
-const RG_FORMS_URL =
-  "https://script.google.com/macros/s/AKfycbxKQcKSymmELgSJuVdKXFZyJ-J65ihUPEKj5WkH4lTbf7e3ZTRLB7MCuVvRsj__8nAs/exec";
+const RG_FORMS_URL = "https://script.google.com/macros/s/AKfycbxKQcKSymmELgSJuVdKXFZyJ-J65ihUPEKj5WkH4lTbf7e3ZTRLB7MCuVvRsj__8nAs/exec";
 
 const loginForm = document.getElementById("loginForm");
 
@@ -345,6 +345,7 @@ loginForm.addEventListener("submit", function (event) {
 
   const callbackName = "ocLogin_" + Date.now();
   const script = document.createElement("script");
+
   const params = new URLSearchParams({
     action: "checkMember",
     nama: nama,
@@ -353,6 +354,7 @@ loginForm.addEventListener("submit", function (event) {
   });
 
   let selesai = false;
+  let timeout;
 
   function bersihkan() {
     selesai = true;
@@ -366,10 +368,10 @@ loginForm.addEventListener("submit", function (event) {
   button.disabled = true;
   button.textContent = "Memeriksa akun...";
 
-  const timeout = setTimeout(function () {
+  timeout = setTimeout(function () {
     if (selesai) return;
     bersihkan();
-    alert("Pemeriksaan terlalu lama. Silakan coba lagi.");
+    alert("Pemeriksaan terlalu lama. Periksa koneksi dan coba lagi.");
   }, 15000);
 
   window[callbackName] = function (result) {
@@ -377,7 +379,7 @@ loginForm.addEventListener("submit", function (event) {
 
     bersihkan();
 
-    if (result.status === "error") {
+    if (!result || result.status === "error") {
       alert("Data belum bisa diperiksa. Coba lagi nanti.");
       return;
     }
@@ -393,13 +395,14 @@ loginForm.addEventListener("submit", function (event) {
   script.onerror = function () {
     if (selesai) return;
     bersihkan();
-    alert("Tidak dapat terhubung ke RG Forms. Coba lagi.");
+    alert("Tidak dapat terhubung ke RG Forms. Periksa URL dan deployment.");
   };
 
   script.src = RG_FORMS_URL + "?" + params.toString();
   document.body.appendChild(script);
 });
 </script>
+
 </body>
 </html>
 
