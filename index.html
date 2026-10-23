@@ -143,156 +143,43 @@
   
   <!-- TAHAP 1: IDENTITAS PESERTA -->
   
-<section class="register-section" id="register">
+<!-- TAHAP 1: MENU UTAMA / KOMUNITAS & GATHERING -->
+<section class="register-section" id="register" style="text-align: center;">
   <p class="eyebrow">05 / YOUR NEXT CHAPTER</p>
   <h2>Temukan lingkaran<br><span>bertumbuhmu.</span></h2>
-  <p>Isi data pendaftaran dan jadilah bagian dari percakapan berikutnya.</p>
-
-  <div class="form-card">
-    <h3>Formulir pendaftaran</h3>
-    <p>Kenalan dulu, yuk. Lengkapi data berikut.</p>
-
-    
-<form id="registrationForm" action="https://formspree.io/f/meaevlqj" method="POST">
-
-  <div class="form-group">
-    <label for="fullName">Nama Lengkap</label>
-    <input
-      type="text"
-      id="fullName"
-      name="fullName"
-      placeholder="Masukkan nama lengkap"
-      autocomplete="name"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="nickname">Nama Panggilan</label>
-    <input
-      type="text"
-      id="nickname"
-      name="nickname"
-      placeholder="Nama yang biasa dipanggil"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="socialMedia">Instagram / Media Sosial</label>
-    <input
-      type="text"
-      id="socialMedia"
-      name="socialMedia"
-      placeholder="Contoh: @namakamu atau tautan akun"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="business">Nama Brand / Usaha</label>
-    <input
-      type="text"
-      id="business"
-      name="business"
-      placeholder="Masukkan nama brand atau usaha"
-      required
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="businessType">Bidang Usaha</label>
-    <select id="businessType" name="businessType" required>
-      <option value="" disabled selected>Pilih bidang usaha</option>
-      <option value="Kuliner/F&B">Kuliner / F&amp;B</option>
-      <option value="Fashion/Pakaian">Fashion / Pakaian</option>
-      <option value="Kecantikan/Skincare">Kecantikan / Skincare</option>
-      <option value="Jasa/Kreatif">Jasa / Kreatif</option>
-      <option value="Retail/Perdagangan">Retail / Perdagangan</option>
-      <option value="Digital/Teknologi">Digital / Teknologi</option>
-      <option value="Lainnya">Lainnya</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="businessDuration">Sudah Berapa Lama Usahamu Berjalan?</label>
-    <select id="businessDuration" name="businessDuration" required>
-      <option value="" disabled selected>Pilih lama usaha</option>
-      <option value="6 bulan - 1 tahun">6 bulan – 1 tahun</option>
-      <option value="1 - 3 tahun">1 – 3 tahun</option>
-      <option value="3 - 5 tahun">3 – 5 tahun</option>
-      <option value="Lebih dari 5 tahun">Lebih dari 5 tahun</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="discoverySource">Dari Mana Mengetahui Owner Circle?</label>
-    <select id="discoverySource" name="discoverySource" required>
-      <option value="" disabled selected>Pilih sumber informasi</option>
-      <option value="Instagram">Instagram</option>
-      <option value="WhatsApp">WhatsApp</option>
-      <option value="Teman/Kenalan">Teman / Kenalan</option>
-      <option value="Lainnya">Lainnya</option>
-    </select>
-  </div>
-
-  <div class="form-group" id="otherSourceGroup" hidden>
-    <label for="otherSource">Sumber Informasi Lainnya</label>
-    <input
-      type="text"
-      id="otherSource"
-      name="otherSource"
-      placeholder="Ceritakan dari mana kamu mengetahui Owner Circle"
-      disabled
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="reason">Apa yang Ingin Kamu Dapatkan dari Owner Circle?</label>
-    <textarea
-      id="reason"
-      name="reason"
-      rows="4"
-      placeholder="Ceritakan harapanmu bergabung dengan Owner Circle..."
-      required
-    ></textarea>
-  </div>
-
-  <div class="form-group">
-    <label>
-      <input
-        type="checkbox"
-        id="consent"
-        name="consent"
-        value="Setuju"
-        required
-      >
-      Saya menyetujui pengiriman data pendaftaran ini kepada panitia Owner Circle.
-    </label>
-  </div>
-
-
-<div class="form-actions">
-  <p id="formStatus" class="status" role="status" aria-live="polite"></p>
-
-  <button type="submit" class="submit-button">
-    <span>Kirim Pendaftaran</span>
-    <span class="submit-arrow" aria-hidden="true">↗</span>
-  </button>
-
-  <p class="form-note">
-    Bergabunglah, bertukar cerita, dan bertumbuh bersama.
+  <p style="max-width: 520px; margin-left: auto; margin-right: auto; margin-bottom: 32px;">
+    Pilih langkahmu untuk bergabung ke dalam komunitas atau ikuti kegiatan gathering kami berikutnya.
   </p>
-</div>
 
+  <div class="form-card" style="max-width: 520px; margin-left: auto; margin-right: auto; text-align: center;">
+    <h3 style="margin-bottom: 8px;">Owner Circle</h3>
+    <p style="margin-bottom: 24px; color: #77756e;">Silakan pilih salah satu tautan di bawah ini:</p>
 
-</form>
+    <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+      <!-- Tombol 1: Bergabung ke Komunitas WhatsApp -->
+      <a
+        class="button"
+        href="https://chat.whatsapp.com/DQ5it9zrFn4D2OFHFD7KEG?s=sh&p=i&mlu=4&ilr=4"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="width: 100%; justify-content: center;"
+      >
+        <span>Bergabung ke Komunitas</span>
+        <span aria-hidden="true">↗</span>
+      </a>
 
-
-   
+      <!-- Tombol 2: Informasi & Pendaftaran Gathering -->
+      <a
+        class="button"
+        href="gathering.html"
+        style="width: 100%; justify-content: center; background: transparent; color: var(--dark); border-color: var(--dark);"
+      >
+        <span>Lihat Informasi & Daftar Gathering</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </section>
-</main>
 
   <footer>
     <a class="brand" href="#home">OWNER<span>CIRCLE.</span></a>

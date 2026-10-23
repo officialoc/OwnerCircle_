@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daftar Gathering — Owner Circle</title>
-
   
   <style>
     :root {
@@ -165,6 +163,13 @@
       background: var(--dark-brown);
     }
 
+    .status {
+      margin: 12px 0;
+      color: var(--dark-brown);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
     .back-link {
       display: block;
       margin-top: 18px;
@@ -188,120 +193,108 @@
       }
     }
 
-    
-.payment-card {
-  margin-bottom: 24px;
-  padding: 26px;
-  background: #FAF7F0;
-  border: 1px solid #D9CDBB;
-  border-radius: 8px;
-}
+    .payment-card {
+      margin-bottom: 24px;
+      padding: 26px;
+      background: #FAF7F0;
+      border: 1px solid #D9CDBB;
+      border-radius: 8px;
+    }
 
-.payment-label {
-  color: #79563D;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
+    .payment-label {
+      color: #79563D;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
 
-.payment-card h2 {
-  margin: 10px 0;
-  font-size: 23px;
-}
+    .payment-card h2 {
+      margin: 10px 0;
+      font-size: 23px;
+    }
 
-.payment-description {
-  color: #6F6256;
-  font-size: 14px;
-}
+    .payment-description {
+      color: #6F6256;
+      font-size: 14px;
+    }
 
-.payment-amount {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 22px 0;
-  padding: 16px 0;
-  border-top: 1px solid #D9CDBB;
-  border-bottom: 1px solid #D9CDBB;
-}
+    .payment-amount {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 22px 0;
+      padding: 16px 0;
+      border-top: 1px solid #D9CDBB;
+      border-bottom: 1px solid #D9CDBB;
+    }
 
-.payment-amount span {
-  color: #6F6256;
-  font-size: 14px;
-}
+    .payment-amount span {
+      color: #6F6256;
+      font-size: 14px;
+    }
 
-.payment-amount strong {
-  color: #543A2A;
-  font-size: 22px;
-}
+    .payment-amount strong {
+      color: #543A2A;
+      font-size: 22px;
+    }
 
-.bank-box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 7px;
-  padding: 20px;
-  background: #F3EBDD;
-  border: 1px solid #D9CDBB;
-  border-radius: 5px;
-}
+    .bank-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      padding: 20px;
+      background: #F3EBDD;
+      border: 1px solid #D9CDBB;
+      border-radius: 5px;
+    }
 
-.bank-name {
-  margin-bottom: 8px;
-  color: #79563D;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
+    .bank-name {
+      margin-bottom: 8px;
+      color: #79563D;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
 
-.account-label {
-  margin-top: 6px;
-  color: #6F6256;
-  font-size: 12px;
-}
+    .account-label {
+      margin-top: 6px;
+      color: #6F6256;
+      font-size: 12px;
+    }
 
-#accountNumber {
-  font-size: 22px;
-  letter-spacing: 1px;
-}
+    #accountNumber {
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
 
-.copy-button {
-  margin-top: 16px;
-  padding: 11px 14px;
-  border: 1px solid #79563D;
-  border-radius: 5px;
-  background: #79563D;
-  color: #FFFFFF;
-  font-weight: 700;
-  cursor: pointer;
-}
+    .copy-button {
+      margin-top: 16px;
+      padding: 11px 14px;
+      border: 1px solid #79563D;
+      border-radius: 5px;
+      background: #79563D;
+      color: #FFFFFF;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
-.copy-button:hover {
-  background: #543A2A;
-}
+    .copy-button:hover {
+      background: #543A2A;
+    }
 
-.copy-message {
-  margin: 0;
-  color: #543A2A;
-  font-size: 12px;
-}
+    .copy-message {
+      margin: 0;
+      color: #543A2A;
+      font-size: 12px;
+    }
 
-.payment-note {
-  margin-bottom: 0;
-  color: #6F6256;
-  font-size: 12px;
-}
-
-@media (max-width: 480px) {
-  .payment-card {
-    padding: 20px;
-  }
-
-  .payment-amount strong {
-    font-size: 19px;
-  }
-}
-
+    .payment-note {
+      margin-bottom: 0;
+      color: #6F6256;
+      font-size: 12px;
+    }
   </style>
 </head>
 
@@ -324,132 +317,147 @@
       Isi data berikut dengan benar untuk mendaftarkan dirimu di
       Owner Circle — Pertemuan 02.
     </p>
-
     
-<section class="payment-card">
-  <span class="payment-label">INFORMASI PEMBAYARAN</span>
-  <h2>Konfirmasi Kehadiranmu</h2>
-  <p class="payment-description">
-    Selesaikan pembayaran terlebih dahulu untuk mengikuti
-    Owner Circle — Pertemuan 02.
-  </p>
-
-  <div class="payment-amount">
-    <span>HTM per peserta</span>
-    <strong>Rp110.000</strong>
-  </div>
-
-  <div class="bank-box">
-    <span class="bank-name">BANK BCA</span>
-    <span class="account-label">Nomor Rekening</span>
-    <strong id="accountNumber">8685332422</strong>
-
-    <span class="account-label">Atas Nama</span>
-    <strong>Kiki Kurnia Saputri</strong>
-
-    <button
-      type="button"
-      class="copy-button"
-      onclick="salinRekening()"
-    >
-      Salin Nomor Rekening
-    </button>
-    <p id="copyMessage" class="copy-message" aria-live="polite"></p>
-  </div>
-
-  <p class="payment-note">
-    
-  </p>
-</section>
-
-    
-<section class="form-card">
-  <h2>Data Peserta</h2>
-
-  <form onsubmit="kirimKeWhatsApp(event)">
-
-    <div class="field">
-      <label for="nama">Nama lengkap <span class="required">*</span></label>
-      <input type="text" id="nama" name="nama"
-        placeholder="Masukkan nama lengkap" autocomplete="name" required>
-    </div>
-
-    <div class="field">
-      <label for="whatsapp">Nomor WhatsApp <span class="required">*</span></label>
-      <input type="tel" id="whatsapp" name="whatsapp"
-        placeholder="Contoh: 081234567890" autocomplete="tel" required>
-    </div>
-
-    <div class="field">
-      <label for="usaha">Nama usaha <span class="required">*</span></label>
-      <input type="text" id="usaha" name="usaha"
-        placeholder="Masukkan nama usaha" required>
-    </div>
-
-    <div class="field">
-      <label for="jenis">Jenis usaha <span class="required">*</span></label>
-      <select id="jenis" name="jenis" required>
-        <option value="">Pilih jenis usaha</option>
-        <option value="Kuliner">Kuliner</option>
-        <option value="Fashion">Fashion</option>
-        <option value="Jasa">Jasa</option>
-        <option value="Kreatif dan Digital">Kreatif dan Digital</option>
-        <option value="Retail dan Perdagangan">Retail dan Perdagangan</option>
-        <option value="Lainnya">Lainnya</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="jumlah">Jumlah peserta <span class="required">*</span></label>
-      <select id="jumlah" name="jumlah" required>
-        <option value="1">1 orang</option>
-        <option value="2">2 orang</option>
-        <option value="3">3 orang</option>
-        <option value="4">4 orang</option>
-        <option value="5">5 orang</option>
-      </select>
-      <p class="hint">HTM Rp110.000 per orang. Total dihitung otomatis di pesan WhatsApp.</p>
-    </div>
-
-    
-<div class="field">
-  <label>Pilihan minuman setiap peserta <span class="required">*</span></label>
-  <div id="drinkChoices"></div>
-  <p class="hint">Pilih satu minuman untuk setiap peserta.</p>
-</div>
-
-    <div class="field">
-      <label for="bukti">Foto bukti pembayaran <span class="required">*</span></label>
-      <input type="file" id="bukti" name="bukti"
-        accept="image/*" required>
-      <p class="hint">
-        Wajib pilih foto bukti transfer di sini. Setelah WhatsApp terbuka,
-        lampirkan kembali foto tersebut di chat sebelum mengirim pesan.
+    <section class="payment-card">
+      <span class="payment-label">INFORMASI PEMBAYARAN</span>
+      <h2>Konfirmasi Kehadiranmu</h2>
+      <p class="payment-description">
+        Selesaikan pembayaran terlebih dahulu untuk mengikuti
+        Owner Circle — Pertemuan 02.
       </p>
-    </div>
 
-    <div class="field">
-      <label for="catatan">Catatan tambahan kalau lebih dari 1 orang</label>
-      <textarea id="catatan" name="catatan" rows="3"
-        placeholder="Peserta 2 : Nama, Peserta 3 : Nama, dst"></textarea>
-    </div>
+      <div class="payment-amount">
+        <span>HTM per peserta</span>
+        <strong>Rp110.000</strong>
+      </div>
 
-    <div class="notice">
-      Pastikan data dan pembayaran sudah benar. Pesan pendaftaran akan
-      diteruskan ke WhatsApp panitia. Pendaftaran dikonfirmasi setelah
-      diperiksa oleh panitia.
-    </div>
+      <div class="bank-box">
+        <span class="bank-name">BANK BCA</span>
+        <span class="account-label">Nomor Rekening</span>
+        <strong id="accountNumber">8685332422</strong>
 
-    <button type="submit" class="button">
-      Lanjut ke WhatsApp →
-    </button>
-  </form>
+        <span class="account-label">Atas Nama</span>
+        <strong>Kiki Kurnia Saputri</strong>
 
-  <a href="gathering.html" class="back-link">
-    ← Kembali ke informasi gathering
-  </a>
-</section>
+        <button
+          type="button"
+          class="copy-button"
+          onclick="salinRekening()"
+        >
+          Salin Nomor Rekening
+        </button>
+        <p id="copyMessage" class="copy-message" aria-live="polite"></p>
+      </div>
+    </section>
 
+    <section class="form-card">
+      <h2>Data Peserta</h2>
+
+      <form id="gatheringForm" onsubmit="kirimPendaftaran(event)">
+
+        <div class="field">
+          <label for="nama">Nama lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" name="nama"
+            placeholder="Masukkan nama lengkap" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="nickname">Nama panggilan <span class="required">*</span></label>
+          <input type="text" id="nickname" name="nickname"
+            placeholder="Nama yang biasa dipanggil" required>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">Nomor WhatsApp <span class="required">*</span></label>
+          <input type="tel" id="whatsapp" name="whatsapp"
+            placeholder="Contoh: 081234567890" autocomplete="tel" required>
+        </div>
+
+        <div class="field">
+          <label for="socialMedia">Instagram / Media Sosial <span class="required">*</span></label>
+          <input type="text" id="socialMedia" name="socialMedia"
+            placeholder="Contoh: @namakamu" required>
+        </div>
+
+        <div class="field">
+          <label for="usaha">Nama usaha / Brand <span class="required">*</span></label>
+          <input type="text" id="usaha" name="usaha"
+            placeholder="Masukkan nama usaha" required>
+        </div>
+
+        <div class="field">
+          <label for="jenis">Jenis usaha <span class="required">*</span></label>
+          <select id="jenis" name="jenis" required>
+            <option value="">Pilih jenis usaha</option>
+            <option value="Kuliner/F&B">Kuliner / F&amp;B</option>
+            <option value="Fashion/Pakaian">Fashion / Pakaian</option>
+            <option value="Kecantikan/Skincare">Kecantikan / Skincare</option>
+            <option value="Jasa/Kreatif">Jasa / Kreatif</option>
+            <option value="Retail/Perdagangan">Retail / Perdagangan</option>
+            <option value="Digital/Teknologi">Digital / Teknologi</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="businessDuration">Sudah berapa lama usahamu berjalan? <span class="required">*</span></label>
+          <select id="businessDuration" name="businessDuration" required>
+            <option value="" disabled selected>Pilih lama usaha</option>
+            <option value="6 bulan - 1 tahun">6 bulan – 1 tahun</option>
+            <option value="1 - 3 tahun">1 – 3 tahun</option>
+            <option value="3 - 5 tahun">3 – 5 tahun</option>
+            <option value="Lebih dari 5 tahun">Lebih dari 5 tahun</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="jumlah">Jumlah peserta <span class="required">*</span></label>
+          <select id="jumlah" name="jumlah" required>
+            <option value="1">1 orang</option>
+            <option value="2">2 orang</option>
+            <option value="3">3 orang</option>
+            <option value="4">4 orang</option>
+            <option value="5">5 orang</option>
+          </select>
+          <p class="hint">HTM Rp110.000 per orang. Total dihitung otomatis di pesan WhatsApp.</p>
+        </div>
+
+        <div class="field">
+          <label>Pilihan minuman setiap peserta <span class="required">*</span></label>
+          <div id="drinkChoices"></div>
+          <p class="hint">Pilih satu minuman untuk setiap peserta.</p>
+        </div>
+
+        <div class="field">
+          <label for="catatan">Catatan tambahan kalau lebih dari 1 orang</label>
+          <textarea id="catatan" name="catatan" rows="3"
+            placeholder="Peserta 2 : Nama, Peserta 3 : Nama, dst"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="bukti">Foto bukti pembayaran <span class="required">*</span></label>
+          <input type="file" id="bukti" name="bukti"
+            accept="image/*" required>
+          <p class="hint">
+            Wajib pilih foto bukti transfer di sini. Setelah WhatsApp terbuka,
+            lampirkan kembali foto tersebut di chat sebelum mengirim pesan.
+          </p>
+        </div>
+
+        <div class="notice">
+          Pastikan data dan pembayaran sudah benar. Data akan otomatis tercatat dan diarahkan ke WhatsApp panitia.
+        </div>
+
+        <div id="formStatus" class="status" aria-live="polite"></div>
+
+        <button type="submit" id="submitBtn" class="button">
+          Lanjut ke WhatsApp →
+        </button>
+      </form>
+
+      <a href="gathering.html" class="back-link">
+        ← Kembali ke informasi gathering
+      </a>
     </section>
   </main>
 
@@ -458,6 +466,9 @@
   </footer>
 
 <script>
+  // GANTI URL DI BAWAH INI DENGAN WEB APP URL GOOGLE APPS SCRIPT MILIKMU YANG BARU
+  const SUBMISSION_ENDPOINT = "https://script.google.com/macros/s/AKfycbz8XIUekABxlRtjvS2QgHqHhor9sNvFjDgICsn8X3fOkI8sJB3XRUqY1Reof_jRjz89MA/exec";
+
   async function salinRekening() {
     const nomor = document.getElementById("accountNumber").textContent.trim();
     const pesan = document.getElementById("copyMessage");
@@ -470,90 +481,86 @@
     }
   }
 
-  
-const daftarMinuman = [
-  "Jus alpukat",
-  "Matcha coklat",
-  "Lychee tea",
-  "Lemon tea",
-  "Ice mocha",
-  "Kopi susu gula aren",
-  "Ice cream latte",
-  "Ice matcha coffee latte",
-  "Ice latte"
-];
+  const daftarMinuman = [
+    "Jus alpukat",
+    "Matcha coklat",
+    "Lychee tea",
+    "Lemon tea",
+    "Ice mocha",
+    "Kopi susu gula aren",
+    "Ice cream latte",
+    "Ice matcha coffee latte",
+    "Ice latte"
+  ];
 
-const jumlahSelect = document.getElementById("jumlah");
-const drinkChoices = document.getElementById("drinkChoices");
+  const jumlahSelect = document.getElementById("jumlah");
+  const drinkChoices = document.getElementById("drinkChoices");
 
-function buatPilihanMinuman() {
-  const jumlah = Number(jumlahSelect.value);
-  drinkChoices.innerHTML = "";
+  function buatPilihanMinuman() {
+    const jumlah = Number(jumlahSelect.value);
+    drinkChoices.innerHTML = "";
 
-  for (let i = 1; i <= jumlah; i++) {
-    const field = document.createElement("div");
-    field.className = "field";
+    for (let i = 1; i <= jumlah; i++) {
+      const field = document.createElement("div");
+      field.className = "field";
 
-    const label = document.createElement("label");
-    label.textContent = "Minuman peserta " + i;
-    label.htmlFor = "minuman" + i;
+      const label = document.createElement("label");
+      label.textContent = "Minuman peserta " + i;
+      label.htmlFor = "minuman" + i;
 
-    const select = document.createElement("select");
-    select.id = "minuman" + i;
-    select.name = "minuman" + i;
-    select.required = true;
+      const select = document.createElement("select");
+      select.id = "minuman" + i;
+      select.name = "minuman" + i;
+      select.required = true;
 
-    const awal = document.createElement("option");
-    awal.value = "";
-    awal.textContent = "Pilih minuman";
-    select.appendChild(awal);
+      const awal = document.createElement("option");
+      awal.value = "";
+      awal.textContent = "Pilih minuman";
+      select.appendChild(awal);
 
-    daftarMinuman.forEach(function(minuman) {
-      const option = document.createElement("option");
-      option.value = minuman;
-      option.textContent = minuman;
-      select.appendChild(option);
-    });
+      daftarMinuman.forEach(function(minuman) {
+        const option = document.createElement("option");
+        option.value = minuman;
+        option.textContent = minuman;
+        select.appendChild(option);
+      });
 
-    field.appendChild(label);
-    field.appendChild(select);
-    drinkChoices.appendChild(field);
+      field.appendChild(label);
+      field.appendChild(select);
+      drinkChoices.appendChild(field);
+    }
   }
-}
 
-jumlahSelect.addEventListener("change", buatPilihanMinuman);
-buatPilihanMinuman();
+  jumlahSelect.addEventListener("change", buatPilihanMinuman);
+  buatPilihanMinuman();
 
-
-  function kirimKeWhatsApp(event) {
+  async function kirimPendaftaran(event) {
     event.preventDefault();
 
     const nama = document.getElementById("nama").value.trim();
+    const nickname = document.getElementById("nickname").value.trim();
     const whatsapp = document.getElementById("whatsapp").value.trim();
+    const socialMedia = document.getElementById("socialMedia").value.trim();
     const usaha = document.getElementById("usaha").value.trim();
     const jenis = document.getElementById("jenis").value;
-    
-const jumlah = Number(document.getElementById("jumlah").value);
-const buktiInput = document.getElementById("bukti");
-const catatan = document.getElementById("catatan").value.trim();
+    const businessDuration = document.getElementById("businessDuration").value;
+    const jumlah = Number(document.getElementById("jumlah").value);
+    const buktiInput = document.getElementById("bukti");
+    const catatan = document.getElementById("catatan").value.trim();
 
-const pilihanMinuman = [];
+    const pilihanMinumanArray = [];
+    for (let i = 1; i <= jumlah; i++) {
+      const pilihan = document.getElementById("minuman" + i).value;
+      if (!pilihan) {
+        alert("Silakan pilih minuman untuk peserta " + i + ".");
+        return;
+      }
+      pilihanMinumanArray.push("Peserta " + i + ": " + pilihan);
+    }
 
-for (let i = 1; i <= jumlah; i++) {
-  const pilihan = document.getElementById("minuman" + i).value;
+    let catatanFinal = catatan || "-";
 
-  if (!pilihan) {
-    alert("Silakan pilih minuman untuk peserta " + i + ".");
-    return;
-  }
-
-  pilihanMinuman.push("Peserta " + i + ": " + pilihan);
-}
-
-let catatanFinal = catatan || "-";
-
-
-    if (!nama || !whatsapp || !usaha || !jenis || !jumlah || !buktiInput.files.length) {
+    if (!nama || !nickname || !whatsapp || !socialMedia || !usaha || !jenis || !businessDuration || !jumlah || !buktiInput.files.length) {
       alert("Mohon lengkapi semua data dan pilih foto bukti pembayaran.");
       return;
     }
@@ -561,37 +568,88 @@ let catatanFinal = catatan || "-";
     const bukti = buktiInput.files[0];
     const total = jumlah * 110000;
 
-    
-const pesan = [
-  "PENDAFTARAN GATHERING OWNER CIRCLE",
-  "Pertemuan ke 02",
-  "",
-  "Nama lengkap: " + nama,
-  "Nomor WhatsApp: " + whatsapp,
-  "Nama usaha: " + usaha,
-  "Jenis usaha: " + jenis,
-  "Jumlah peserta: " + jumlah + " orang",
-  "",
-  "PILIHAN MINUMAN:",
-  ...pilihanMinuman,
-  "",
-  "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
-  "Nama file bukti transfer: " + bukti.name,
-  "",
-  "Catatan tambahan: " + catatanFinal,
-  "",
-  "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
-].join("\n");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusDiv = document.getElementById("formStatus");
 
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Menyimpan data...";
+    statusDiv.textContent = "Sedang mengirim data ke spreadsheet...";
 
-    const url =
-  "https://wa.me/6281219969503?text=" + encodeURIComponent(pesan);
+    // Bungkus data untuk dikirim ke Spreadsheet
+    const fields = {
+      nama_lengkap: nama,
+      nama_panggilan: nickname,
+      whatsapp: whatsapp,
+      sosial_media: socialMedia,
+      nama_usaha: usaha,
+      jenis_usaha: jenis,
+      lama_usaha: businessDuration,
+      jumlah_peserta: jumlah + " orang (Total: Rp" + total.toLocaleString("id-ID") + ")",
+      pilihan_minuman: pilihanMinumanArray.join(", "),
+      catatan: catatanFinal,
+      nama_file_bukti: bukti.name
+    };
 
-// Buka WhatsApp di tab baru
-window.open(url, "_blank");
+    try {
+      // Kirim data ke Google Apps Script / Spreadsheet
+      const response = await fetch(SUBMISSION_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({ fields: fields })
+      });
 
-// Arahkan tab website ke halaman konfirmasi
-window.location.href = "konfirmasi-gathering.html";
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || result?.success === false) {
+        throw new Error(result?.error || "Gagal menyimpan ke spreadsheet.");
+      }
+
+      statusDiv.textContent = "Data berhasil disimpan! Membuka WhatsApp...";
+
+      // Buat format pesan WhatsApp
+      const pesan = [
+        "PENDAFTARAN GATHERING OWNER CIRCLE",
+        "Pertemuan ke 02",
+        "",
+        "Nama lengkap: " + nama,
+        "Nama panggilan: " + nickname,
+        "Nomor WhatsApp: " + whatsapp,
+        "Instagram / Medsos: " + socialMedia,
+        "Nama usaha: " + usaha,
+        "Jenis usaha: " + jenis,
+        "Lama usaha berjalan: " + businessDuration,
+        "Jumlah peserta: " + jumlah + " orang",
+        "",
+        "PILIHAN MINUMAN:",
+        ...pilihanMinumanArray,
+        "",
+        "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
+        "Nama file bukti transfer: " + bukti.name,
+        "",
+        "Catatan tambahan: " + catatanFinal,
+        "",
+        "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
+      ].join("\n");
+
+      const url = "https://wa.me/6281219969503?text=" + encodeURIComponent(pesan);
+
+      // Buka WhatsApp di tab baru & arahkan ke halaman konfirmasi
+      window.open(url, "_blank");
+      window.location.href = "konfirmasi-gathering.html";
+
+    } catch (error) {
+      console.error("Error:", error);
+      statusDiv.textContent = "Terjadi kendala koneksi ke database, tapi kamu tetap diarahkan ke WhatsApp.";
+      
+      // Tetap arahkan ke WhatsApp meskipun gagal koneksi spreadsheet agar user tidak terhalang
+      setTimeout(() => {
+        const pesanFallback = "Halo panitia, saya mendaftar gathering Owner Circle atas nama " + nama;
+        window.open("https://wa.me/6281219969503?text=" + encodeURIComponent(pesanFallback), "_blank");
+        window.location.href = "konfirmasi-gathering.html";
+      }, 1500);
+    }
   }
 </script>
 
