@@ -532,9 +532,33 @@ buatPilihanMinuman();
     const whatsapp = document.getElementById("whatsapp").value.trim();
     const usaha = document.getElementById("usaha").value.trim();
     const jenis = document.getElementById("jenis").value;
-    const jumlah = Number(document.getElementById("jumlah").value);
-    const buktiInput = document.getElementById("bukti");
-    const catatan = document.getElementById("catatan").value.trim();
+    
+const jumlah = Number(document.getElementById("jumlah").value);
+const buktiInput = document.getElementById("bukti");
+const catatan = document.getElementById("catatan").value.trim();
+
+const pilihanMinuman = [];
+
+for (let i = 1; i <= jumlah; i++) {
+  const pilihan = document.getElementById("minuman" + i).value;
+
+  if (!pilihan) {
+    alert("Silakan pilih minuman untuk peserta " + i + ".");
+    return;
+  }
+
+  pilihanMinuman.push("Peserta " + i + ": " + pilihan);
+}
+
+let catatanFinal = catatan || "-";
+
+if (jumlah > 1) {
+  catatanFinal +=
+    (catatan ? "\n" : "") +
+    "Pilihan minuman tambahan:\n" +
+    pilihanMinuman.join("\n");
+}
+
 
     if (!nama || !whatsapp || !usaha || !jenis || !jumlah || !buktiInput.files.length) {
       alert("Mohon lengkapi semua data dan pilih foto bukti pembayaran.");
@@ -544,22 +568,28 @@ buatPilihanMinuman();
     const bukti = buktiInput.files[0];
     const total = jumlah * 110000;
 
-    const pesan = [
-      "PENDAFTARAN GATHERING OWNER CIRCLE",
-      "Pertemuan ke 02",
-      "",
-      "Nama lengkap: " + nama,
-      "Nomor WhatsApp: " + whatsapp,
-      "Nama usaha: " + usaha,
-      "Jenis usaha: " + jenis,
-      "Jumlah peserta: " + jumlah + " orang",
-      "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
-      "Nama file bukti transfer: " + bukti.name,
-      "",
-      "Catatan: " + (catatan || "-"),33
-      ,
-      "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
-    ].join("\n");
+    
+const pesan = [
+  "PENDAFTARAN GATHERING OWNER CIRCLE",
+  "Pertemuan ke-02",
+  "",
+  "Nama lengkap: " + nama,
+  "Nomor WhatsApp: " + whatsapp,
+  "Nama usaha: " + usaha,
+  "Jenis usaha: " + jenis,
+  "Jumlah peserta: " + jumlah + " orang",
+  "",
+  "PILIHAN MINUMAN:",
+  ...pilihanMinuman,
+  "",
+  "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
+  "Nama file bukti transfer: " + bukti.name,
+  "",
+  "Catatan tambahan: " + catatanFinal,
+  "",
+  "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
+].join("\n");
+
 
     const url =
   "https://wa.me/6281219969503?text=" + encodeURIComponent(pesan);
