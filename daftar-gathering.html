@@ -552,13 +552,6 @@ for (let i = 1; i <= jumlah; i++) {
 
 let catatanFinal = catatan || "-";
 
-if (jumlah > 1) {
-  catatanFinal +=
-    (catatan ? "\n" : "") +
-    "Pilihan minuman tambahan:\n" +
-    pilihanMinuman.join("\n");
-}
-
 
     if (!nama || !whatsapp || !usaha || !jenis || !jumlah || !buktiInput.files.length) {
       alert("Mohon lengkapi semua data dan pilih foto bukti pembayaran.");
@@ -571,7 +564,7 @@ if (jumlah > 1) {
     
 const pesan = [
   "PENDAFTARAN GATHERING OWNER CIRCLE",
-  "Pertemuan ke-02",
+  "Pertemuan ke 02",
   "",
   "Nama lengkap: " + nama,
   "Nomor WhatsApp: " + whatsapp,
