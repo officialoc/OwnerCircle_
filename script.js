@@ -1,31 +1,33 @@
 
-  "use strict";
+"use strict";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const SUBMISSION_ENDPOINT = "https://formspree.io/f/meaevlqj";
+document.addEventListener("DOMContentLoaded", () => {
+  const SUBMISSION_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbxKQcKSymmELgSJuVdKXFZyJ-J65ihUPEKj5WkH4lTbf7e3ZTRLB7MCuVvRsj__8nAs/exec";
 
-    const form = document.getElementById("registrationForm");
-    const status = document.getElementById("formStatus");
-    const year = document.getElementById("year");
+  const SHEET_TAB = "contact";
 
-    if (year) {
-      year.textContent = new Date().getFullYear();
-    }
+  const form = document.getElementById("registrationForm");
+  const status = document.getElementById("formStatus");
+  const year = document.getElementById("year");
 
-    function openRegistration() {
-      document.getElementById("register")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
-    document.getElementById("navRegister")
-      ?.addEventListener("click", openRegistration);
+  function openRegistration() {
+    document.getElementById("register")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
 
-    document.getElementById("heroRegister")
-      ?.addEventListener("click", openRegistration);
+  document.getElementById("navRegister")
+    ?.addEventListener("click", openRegistration);
 
-      
+  document.getElementById("heroRegister")
+    ?.addEventListener("click", openRegistration);
+
   const sourceSelect = document.getElementById("discoverySource");
   const otherSourceGroup = document.getElementById("otherSourceGroup");
   const otherSourceInput = document.getElementById("otherSource");
@@ -50,60 +52,90 @@
   sourceSelect?.addEventListener("change", toggleOtherSource);
   toggleOtherSource();
 
+  if (!form) {
+    console.error("Form registrationForm tidak ditemukan.");
+    return;
+  }
 
-    if (!form) {
-      console.error("Form registrationForm tidak ditemukan.");
-      return;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const button = form.querySelector('button[type="submit"]');
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Mengirim...";
     }
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    if (status) {
+      status.textContent = "Sedang mengirim pendaftaran...";
+    }
 
-      const button = form.querySelector('button[type="submit"]');
+    const getValue = (id) =>
+      document.getElementById(id)?.value.trim() || "";
 
-      if (button) {
-        button.disabled = true;
-        button.textContent = "Mengirim...";
+    const discoverySource = getValue("discoverySource");
+    const otherSource = getValue("otherSource");
+
+    const sourceValue =
+      discoverySource === "Lainnya" && otherSource
+        ? `Lainnya: ${otherSource}`
+        : discoverySource;
+
+    const fields = {
+      nama_lengkap: getValue("fullName"),
+      nama_panggilan: getValue("nickname"),
+      nama_bisnis: getValue("business"),
+      jenis_usaha: getValue("businessType"),
+      lama_usaha: getValue("businessDuration"),
+      sosial_media: getValue("socialMedia"),
+      sumber_informasi: sourceValue,
+      keinginan_bergabung: getValue("reason")
+    };
+
+    try {
+      const response = await fetch(SUBMISSION_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          tab: SHEET_TAB,
+          fields: fields
+        })
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || result?.success === false) {
+        throw new Error(
+          result?.message ||
+          result?.error ||
+          "Pendaftaran gagal disimpan."
+        );
       }
 
       if (status) {
-        status.textContent = "Sedang mengirim pendaftaran...";
+        status.textContent = "Pendaftaran berhasil dikirim!";
       }
 
-      try {
-        const response = await fetch(SUBMISSION_ENDPOINT, {
-          method: "POST",
-          body: new FormData(form),
-          headers: {
-            Accept: "application/json"
-          }
-        });
+      window.location.href = "berhasil.html";
 
-        if (response.ok) {
-          window.location.href = "berhasil.html";
-          return;
-        }
+    } catch (error) {
+      console.error("Gagal mengirim pendaftaran:", error);
 
-        const result = await response.json().catch(() => ({}));
-
-        if (status) {
-          status.textContent =
-            result.errors?.map(error => error.message).join(", ") ||
-            "Pendaftaran gagal dikirim. Silakan coba lagi.";
-        }
-      } catch (error) {
-        console.error("Gagal mengirim pendaftaran:", error);
-
-        if (status) {
-          status.textContent =
-            "Koneksi bermasalah. Periksa internet lalu coba lagi.";
-        }
+      if (status) {
+        status.textContent =
+          "Pendaftaran belum dapat dipastikan tersimpan. " +
+          "Silakan coba lagi atau hubungi panitia.";
       }
 
       if (button) {
         button.disabled = false;
         button.textContent = "Kirim Pendaftaran ↗";
       }
-    });
+    }
   });
-
+});
