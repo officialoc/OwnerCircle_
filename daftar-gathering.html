@@ -411,6 +411,13 @@
       <p class="hint">HTM Rp110.000 per orang. Total dihitung otomatis di pesan WhatsApp.</p>
     </div>
 
+    
+<div class="field">
+  <label>Pilihan minuman setiap peserta <span class="required">*</span></label>
+  <div id="drinkChoices"></div>
+  <p class="hint">Pilih satu minuman untuk setiap peserta.</p>
+</div>
+
     <div class="field">
       <label for="bukti">Foto bukti pembayaran <span class="required">*</span></label>
       <input type="file" id="bukti" name="bukti"
@@ -463,6 +470,61 @@
     }
   }
 
+  
+const daftarMinuman = [
+  "Jus alpukat",
+  "Matcha coklat",
+  "Lychee tea",
+  "Lemon tea",
+  "Ice mocha",
+  "Kopi susu gula aren",
+  "Ice cream latte",
+  "Ice matcha coffee latte",
+  "Ice latte"
+];
+
+const jumlahSelect = document.getElementById("jumlah");
+const drinkChoices = document.getElementById("drinkChoices");
+
+function buatPilihanMinuman() {
+  const jumlah = Number(jumlahSelect.value);
+  drinkChoices.innerHTML = "";
+
+  for (let i = 1; i <= jumlah; i++) {
+    const field = document.createElement("div");
+    field.className = "field";
+
+    const label = document.createElement("label");
+    label.textContent = "Minuman peserta " + i;
+    label.htmlFor = "minuman" + i;
+
+    const select = document.createElement("select");
+    select.id = "minuman" + i;
+    select.name = "minuman" + i;
+    select.required = true;
+
+    const awal = document.createElement("option");
+    awal.value = "";
+    awal.textContent = "Pilih minuman";
+    select.appendChild(awal);
+
+    daftarMinuman.forEach(function(minuman) {
+      const option = document.createElement("option");
+      option.value = minuman;
+      option.textContent = minuman;
+      select.appendChild(option);
+    });
+
+    field.appendChild(label);
+    field.appendChild(select);
+    drinkChoices.appendChild(field);
+  }
+}
+
+jumlahSelect.addEventListener("change", buatPilihanMinuman);
+buatPilihanMinuman();
+
+
   function kirimKeWhatsApp(event) {
     event.preventDefault();
 
@@ -494,8 +556,8 @@
       "Total pembayaran: Rp" + total.toLocaleString("id-ID"),
       "Nama file bukti transfer: " + bukti.name,
       "",
-      "Catatan: " + (catatan || "-"),
-      "",
+      "Catatan: " + (catatan || "-"),33
+      ,
       "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!"
     ].join("\n");
 
