@@ -466,12 +466,13 @@
           <input type="file" id="bukti" name="bukti"
             accept="image/*" required>
           <p class="hint">
-            Wajib pilih foto bukti transfer. File akan otomatis di-upload ke Drive & link-nya masuk ke Spreadsheet.
+            Wajib pilih foto bukti transfer di sini. Setelah WhatsApp terbuka,
+            lampirkan kembali foto tersebut di chat sebelum mengirim pesan.
           </p>
         </div>
 
         <div class="notice">
-          Pastikan data sudah benar. Data akan dicatat dan Anda akan diarahkan ke WhatsApp panitia.
+          Pastikan data dan pembayaran sudah benar. Data akan otomatis tercatat dan diarahkan ke WhatsApp panitia.
         </div>
 
         <div id="formStatus" class="status" aria-live="polite"></div>
@@ -579,15 +580,6 @@
   jumlahSelect.addEventListener("change", buatPilihanMinuman);
   buatPilihanMinuman();
 
-  function readFileAsBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-      reader.readAsDataURL(file);
-    });
-  }
-
   async function kirimPendaftaran(event) {
     event.preventDefault();
 
@@ -628,7 +620,51 @@
     const bukti = buktiInput.files[0];
     const total = jumlah * 110000;
 
-    // 1. Buat teks pesan WhatsApp
+    const submitBtn = document.getElementById("submitBtn");
+    const statusDiv = document.getElementById("formStatus");
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Menyimpan data...";
+    statusDiv.textContent = "Sedang mengirim data ke spreadsheet...";
+
+    const fields = {
+      nama_lengkap: nama,
+      nama_panggilan: nickname,
+      whatsapp: whatsapp,
+      sosial_media: socialMedia,
+      nama_usaha: usaha,
+      jenis_usaha: jenis,
+      lama_usaha: businessDuration,
+      sumber_informasi: sourceFinal,
+      keinginan_dicapai: reason,
+      jumlah_peserta: jumlah + " orang (Total: Rp" + total.toLocaleString("id-ID") + ")",
+      pilihan_minuman: pilihanMinumanArray.join(", "),
+      catatan: catatanFinal,
+      nama_file_bukti: bukti.name
+    };
+
+    try {
+      const response = await fetch(SUBMISSION_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({ fields: fields })
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || result?.success === false) {
+        throw new Error(result?.error || "Gagal menyimpan ke spreadsheet.");
+      }
+
+      statusDiv.textContent = "Data berhasil disimpan! Membuka WhatsApp...";
+
+    } catch (error) {
+      console.error("Error:", error);
+      statusDiv.textContent = "Melanjutkan ke WhatsApp...";
+    }
+
     const teksMinuman = pilihanMinumanArray.join("\n");
     const pesan = 
       "PENDAFTARAN GATHERING OWNER CIRCLE\n" +
@@ -648,55 +684,14 @@
       "Total pembayaran: Rp" + total.toLocaleString("id-ID") + "\n" +
       "Nama file bukti transfer: " + bukti.name + "\n\n" +
       "Catatan tambahan: " + catatanFinal + "\n\n" +
-      "Saya telah mengunggah bukti pembayaran melalui web. Mohon konfirmasi pendaftaran saya. Terima kasih!";
+      "Saya akan melampirkan foto bukti transfer di chat ini. Mohon konfirmasi pendaftaran saya. Terima kasih!";
 
     const url = "https://wa.me/6281219969503?text=" + encodeURIComponent(pesan);
 
-    // 2. BUKA WHATSAPP DI TAB BARU SEKARANG JUGA (agar tidak diblokir browser)
-    window.open(url, "_blank");
-
-    // 3. Kirim data & upload foto ke Spreadsheet/Drive di background secara aman
-    try {
-      let base64File = "";
-      if (bukti) {
-        base64File = await readFileAsBase64(bukti);
-      }
-
-      const payload = {
-        fields: {
-          nama_lengkap: nama,
-          nama_panggilan: nickname,
-          whatsapp: whatsapp,
-          sosial_media: socialMedia,
-          nama_usaha: usaha,
-          jenis_usaha: jenis,
-          lama_usaha: businessDuration,
-          sumber_informasi: sourceFinal,
-          keinginan_dicapai: reason,
-          jumlah_peserta: jumlah + " orang (Total: Rp" + total.toLocaleString("id-ID") + ")",
-          pilihan_minuman: pilihanMinumanArray.join(", "),
-          catatan: catatanFinal
-        },
-        fileData: base64File,
-        fileName: bukti ? bukti.name : "",
-        fileType: bukti ? bukti.type : ""
-      };
-
-      // Menggunakan mode no-cors agar berjalan lancar di background
-      await fetch(SUBMISSION_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
-    } catch (error) {
-      console.error("Background sync error:", error);
-    }
-
-    // 4. Arahkan halaman utama ke halaman konfirmasi
-    window.location.href = "konfirmasi-gathering.html";
+    setTimeout(() => {
+      window.open(url, "_blank");
+      window.location.href = "konfirmasi-gathering.html";
+    }, 1000);
   }
 </script>
 
